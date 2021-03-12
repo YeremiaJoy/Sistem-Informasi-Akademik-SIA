@@ -1,15 +1,35 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 import ModalMajor from '../component/ModalMajor'
+import { URL_API } from '../utils/constant'
 
 class major extends Component {
     constructor(props){
         super(props);
         this.state = {
-            addModalShow: false
+            addModalShow: false,
+            majorPost: {
+                id: '',
+                code: '',
+                major_name: ''
+            }
+
         }
     }
 
+    getPostAPI = () => {
+        axios.get(URL_API+"major").then((res)=> {
+            this.setState({
+                majorPost: result.data
+            })
+        })
+    }
+
+    handleFormChange = (e) => {
+        
+    }
+    
     render() {
         const style = {
             button_delete: {

@@ -34,7 +34,7 @@ const ModalStudent = (props) => {
                 <Modal.Footer>
                     <Button variant="primary" type="submit">Submit</Button>
                     <Button variant="danger" onClick={props.onHide}>Close</Button>
-                </Modal.Footer>
+                    </Modal.Footer>
             </Form>
         </Modal>
     );

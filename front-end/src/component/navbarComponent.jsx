@@ -8,8 +8,8 @@ const navbarComponents = () => {
                 <Navbar.Brand href="/">Sistem Informasi Akademik</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/student">Students</Nav.Link>
                     <Nav.Link href="/major">Major</Nav.Link>
+                    <Nav.Link href="/student">Students</Nav.Link>
                 </Nav>
             </Navbar>
         </>

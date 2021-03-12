@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
+import ModalMajor from '../component/ModalMajor'
 
-export default class major extends Component {
+class major extends Component {
+    constructor(props){
+        super(props);
+        this.state = { deps:[], addModalShow: false}
+    }
+
     render() {
         const style = {
             button_delete: {
@@ -14,6 +20,9 @@ export default class major extends Component {
                 marginBottom: "20px"
             }
         }
+        const{deps} = this.state;
+        let addModalCLose= () => this.setState({addModalShow:false});
+
         return (
             <Container style={style.container}>
                 <Row style={style.judul}>
@@ -21,7 +30,9 @@ export default class major extends Component {
                         <h2>List Major</h2>
                     </Col>
                     <Col >
-                        <Button variant="success">Add Major</Button>
+                        <Button variant="success" onClick={() => this.setState({addModalShow:true})} >Add Major</Button>
+
+                        <ModalMajor show={this.state.addModalShow} onHide={addModalCLose}/>
                     </Col>
                 </Row>
                 <Table striped>
@@ -49,3 +60,5 @@ export default class major extends Component {
         )
     }
 }
+
+export default major;

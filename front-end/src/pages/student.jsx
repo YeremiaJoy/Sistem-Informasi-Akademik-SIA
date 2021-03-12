@@ -32,7 +32,7 @@ export default class student extends Component {
                     </Col>
                     <Col >
                         <Button variant="success" onClick={handleShow}>Add Student</Button>
-                        <ModalStudent show={this.state.show} onHide={handleClose}/>                         
+                        <ModalStudent show={this.state.show} onHide={handleClose} />                         
                     </Col>
                 </Row>
                 <Table striped>

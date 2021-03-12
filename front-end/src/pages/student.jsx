@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from "react-bootstrap"
+import ModalStudent from '../component/ModalStudent';
 
 export default class student extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            show: false
+        }
+    }
     render() {
         const style = {
             button_update: {
@@ -10,10 +17,13 @@ export default class student extends Component {
             container: {
                 marginTop: "70px"
             },
-            judul :{
+            judul: {
                 marginBottom: "20px"
             }
         }
+
+        const handleClose = () => this.setState({show : false})
+        const handleShow = () => this.setState({show : true})
         return (
             <Container style={style.container}>
                 <Row style={style.judul}>
@@ -21,7 +31,28 @@ export default class student extends Component {
                         <h2>List Student</h2>
                     </Col>
                     <Col >
-                        <Button variant="success">Add Student</Button>
+                        <Button variant="success" onClick={handleShow}>Add Student</Button>
+                        <ModalStudent show={this.state.show} onHide={handleClose}/> 
+                        {/* <Modal
+                            show={this.state.show}
+                            onHide={handleClose}
+                            backdrop="static"
+                            keyboard={false}
+                        >
+                            <Modal.Header closeButton>
+                                <Modal.Title>Modal title</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                I will not close if you click outside me. Don't even try to press
+                                escape key.
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Close
+                                </Button>
+                                <Button variant="primary">Understood</Button>
+                            </Modal.Footer>
+                        </Modal> */}
                     </Col>
                 </Row>
                 <Table striped>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Button} from "react-bootstrap"
+import { Modal, Button, Form, Col } from "react-bootstrap"
 
 const ModalStudent = (props) => {
     return (
@@ -14,17 +14,32 @@ const ModalStudent = (props) => {
                     New Student
             </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <h4>Centered Modal</h4>
-                <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                    consectetur ac, vestibulum at eros.
-            </p>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
+            <Form>
+                <Modal.Body>
+                    <Form.Group controlId="formBasicNama">
+                        <Form.Label>Nama Lengkap</Form.Label>
+                        <Form.Control type="name" placeholder="Masukkan Nama Lengkap" autoComplete="off" required />
+                    </Form.Group>
+                    <Form.Group controlId="formBasicNim">
+                        <Form.Label>NIM</Form.Label>
+                        <Form.Control type="name" placeholder="NIM" autoComplete="off" />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="formGridMajor">
+                        <Form.Label>Major</Form.Label>
+                        <Form.Control as="select" defaultValue="Choose...">
+                            <option>Informatika</option>
+                            <option>Manager</option>
+                            <option>DKV</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Modal.Body>
+                <Modal.Footer>
+                        <Button variant="primary" type="submit">
+                            Submit
+                    </Button>
+                        <Button variant="danger" onClick={props.onHide}>Close</Button>
+                    </Modal.Footer>
+            </Form>
         </Modal>
     );
 }

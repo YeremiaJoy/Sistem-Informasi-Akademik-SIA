@@ -21,7 +21,7 @@ class major extends Component {
     getPostAPI = () => {
         axios.get(URL_API+"major").then((res)=> {
             this.setState({
-                majorPost: result.data
+                majorPost: res.data
             })
         })
     }

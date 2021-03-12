@@ -19,12 +19,12 @@ const ModalMajor = (props) => {
         <Modal.Body>
           <Form.Group controlId="InputMajorCode">
             <Form.Label>Code Major</Form.Label>
-            <Form.Control type="name" placeholder="Input Code Major" autoComplete="off" required />
+            <Form.Control type="name" placeholder="Input Code Major" autoComplete="off" onChange={()=> handleFormChange()} required />
           </Form.Group>
 
           <Form.Group controlId="InputMajorName">
             <Form.Label>Major Name</Form.Label>
-            <Form.Control type="text" placeholder="Input Major Name" autoComplete="off" required />
+            <Form.Control type="text" placeholder="Input Major Name" autoComplete="off" onChange={()=> handleFormChange()} required />
           </Form.Group>
 
         </Modal.Body>

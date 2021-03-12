@@ -27,16 +27,14 @@ const ModalStudent = (props) => {
                     <Form.Group as={Col} controlId="formGridMajor">
                         <Form.Label>Major</Form.Label>
                         <Form.Control as="select" defaultValue="Choose...">
-                            {props.Major.map(major => <option>{major.code} --- {major.major_name}</option> )} 
+                            {props.Major.map(major => <option>{major.code} - {major.major_name}</option> )} 
                         </Form.Control>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                        <Button variant="primary" type="submit">
-                            Submit
-                    </Button>
-                        <Button variant="danger" onClick={props.onHide}>Close</Button>
-                    </Modal.Footer>
+                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button variant="danger" onClick={props.onHide}>Close</Button>
+                </Modal.Footer>
             </Form>
         </Modal>
     );

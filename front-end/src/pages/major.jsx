@@ -5,7 +5,9 @@ import ModalMajor from '../component/ModalMajor'
 class major extends Component {
     constructor(props){
         super(props);
-        this.state = { deps:[], addModalShow: false}
+        this.state = {
+            addModalShow: false
+        }
     }
 
     render() {
@@ -20,7 +22,6 @@ class major extends Component {
                 marginBottom: "20px"
             }
         }
-        const{deps} = this.state;
         let addModalCLose= () => this.setState({addModalShow:false});
 
         return (
@@ -31,7 +32,6 @@ class major extends Component {
                     </Col>
                     <Col >
                         <Button variant="success" onClick={() => this.setState({addModalShow:true})} >Add Major</Button>
-
                         <ModalMajor show={this.state.addModalShow} onHide={addModalCLose}/>
                     </Col>
                 </Row>

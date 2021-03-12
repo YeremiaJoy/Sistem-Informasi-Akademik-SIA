@@ -24,10 +24,10 @@ class major extends Component {
     })
   }
 
-  handleFormChange = (e) => {
-    console.log("form change", e)
-    this.props.handleFormChange
-  }
+  // handleFormChange = (e) => {
+  //   console.log("form change", e)
+  //   this.props.handleFormChange
+  // }
 
   render() {
     const style = {

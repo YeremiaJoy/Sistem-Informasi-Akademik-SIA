@@ -27,9 +27,7 @@ const ModalStudent = (props) => {
                     <Form.Group as={Col} controlId="formGridMajor">
                         <Form.Label>Major</Form.Label>
                         <Form.Control as="select" defaultValue="Choose...">
-                            <option>Informatika</option>
-                            <option>Manager</option>
-                            <option>DKV</option>
+                            {props.Major.map(major => <option>{major.code} --- {major.major_name}</option> )} 
                         </Form.Control>
                     </Form.Group>
                 </Modal.Body>

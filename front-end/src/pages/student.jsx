@@ -1,14 +1,25 @@
 import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from "react-bootstrap"
 import ModalStudent from '../component/ModalStudent';
+import axios from "axios"
+import { URL_API } from '../utils/constant';
+
 
 export default class student extends Component {
     constructor(props){
         super(props);
         this.state = {
-            show: false
+            show: false,
+            majors: []
         }
     }
+
+    componentDidMount(){
+        axios.get(URL_API+"major").then((res) => {
+            this.setState({majors : res.data })
+        })
+    }
+
     render() {
         const style = {
             button_update: {
@@ -29,10 +40,11 @@ export default class student extends Component {
                 <Row style={style.judul}>
                     <Col xs={12} md={10}>
                         <h2>List Student</h2>
+                        {/* {this.state.majors.map(major => <p>{major.code}</p> )}  */}
                     </Col>
                     <Col >
                         <Button variant="success" onClick={handleShow}>Add Student</Button>
-                        <ModalStudent show={this.state.show} onHide={handleClose} />                         
+                        <ModalStudent show={this.state.show} onHide={handleClose} Major={this.state.majors} />                         
                     </Col>
                 </Row>
                 <Table striped>

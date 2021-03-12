@@ -33,6 +33,7 @@ class major extends Component {
                     <Col >
                         <Button variant="success" onClick={() => this.setState({addModalShow:true})} >Add Major</Button>
                         <ModalMajor show={this.state.addModalShow} onHide={addModalCLose}/>
+                        
                     </Col>
                 </Row>
                 <Table striped>

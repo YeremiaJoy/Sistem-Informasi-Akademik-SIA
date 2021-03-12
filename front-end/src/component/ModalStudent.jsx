@@ -18,15 +18,15 @@ const ModalStudent = (props) => {
                 <Modal.Body>
                     <Form.Group controlId="formBasicNama">
                         <Form.Label>Nama Lengkap</Form.Label>
-                        <Form.Control type="name" placeholder="Masukkan Nama Lengkap" autoComplete="off" required onChange={props.HandleChange}/>
+                        <Form.Control type="name" name="name" placeholder="Masukkan Nama Lengkap" autoComplete="off" required onChange={props.HandleChange}/>
                     </Form.Group>
                     <Form.Group controlId="formBasicNim">
                         <Form.Label>NIM</Form.Label>
-                        <Form.Control type="name" placeholder="NIM" autoComplete="off" required onChange={props.HandleChange}/>
+                        <Form.Control type="name" name="nim" placeholder="NIM" autoComplete="off" required onChange={props.HandleChange}/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridMajor">
                         <Form.Label>Major</Form.Label>
-                        <Form.Control as="select" defaultValue="Choose...">
+                        <Form.Control name = "major" as="select" defaultValue="Informatika">
                             {props.Major.map(major => <option>{major.major_name}</option> )} 
                         </Form.Control>
                     </Form.Group>

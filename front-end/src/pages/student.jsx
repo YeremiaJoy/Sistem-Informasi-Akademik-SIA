@@ -3,7 +3,7 @@ import { Container, Table, Button, Row, Col } from "react-bootstrap"
 import ModalStudent from '../component/ModalStudent';
 import axios from "axios"
 import { URL_API } from '../utils/constant';
-
+import swal from "sweetalert";
 
 export default class student extends Component {
     constructor(props) {
@@ -62,8 +62,24 @@ export default class student extends Component {
         }
 
         axios.post(URL_API+"student", dataStudent).then((res) =>{
-            console.log(res.data);
-        })
+            swal({
+                title: "Sukses Add Student",
+                text: "Sukses Add Student " + this.state.name,
+                icon: "success",
+                button: false,
+                timer: 1500,
+              });
+        }).catch((error) => {
+            console.log("Error yaa ", error);
+            console.log("dataUser", dataStudent);
+            swal({
+              title: "Gagal Add Student",
+              text: "Gagal Add Student",
+              icon: "danger",
+              button: false,
+              timer: 1500,
+            });
+          });
 
         this.setState({
             nim: "",

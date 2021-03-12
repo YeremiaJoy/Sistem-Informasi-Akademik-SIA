@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Nav, Button, Tabs, Tab, Container } from 'react-bootstrap';
+import { Card, Button, Tabs, Tab, Container } from 'react-bootstrap';
 
 class home extends Component {
   render() {
@@ -17,7 +17,7 @@ class home extends Component {
               <Card.Text>
                 Press the button to show any Major.  
               </Card.Text>
-              <Button variant="primary">Show Major ..</Button>
+              <Button href="/major" variant="primary">Show Major ..</Button>
             </Card.Body>
           </Tab>
 
@@ -27,7 +27,7 @@ class home extends Component {
               <Card.Text>
                 Press the button to show any Students.
               </Card.Text>
-              <Button variant="primary">Show Students ..</Button>
+              <Button href="/student" variant="primary">Show Students ..</Button>
             </Card.Body>
           </Tab>
           

@@ -15,6 +15,7 @@ const ModalMajor = (props) => {
           Major
         </Modal.Title>
       </Modal.Header>
+      
       <Form onSubmit={(e) => props.handleSubmit(e)}>
         <Modal.Body>
           <Form.Group controlId="InputMajorCode">
@@ -32,7 +33,7 @@ const ModalMajor = (props) => {
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" type="submit" onClick={props.onHide}>Submit</Button>
+          <Button variant="primary" type="submit">Submit</Button>
           <Button variant="danger" onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Form>

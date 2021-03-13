@@ -9,7 +9,7 @@ class major extends Component {
     super(props);
     this.state = {
       addModalShow: false,
-      majors: [],
+      majors: [], //database json fake api
       index: 1,
       id: this.index,
       code: null,
@@ -44,6 +44,11 @@ class major extends Component {
     }
     axios.post(URL_API + "major", dataMajor).then((res) => {
       this.getShowAPI();
+      this.setState({
+        code: null,
+        major_name: null,
+        addModalShow: false
+      })
       swal({
         title: "Sukses Add Student",
         text: "Sukses Add Student " + this.state.name,
@@ -63,12 +68,7 @@ class major extends Component {
       });
     });
 
-    this.setState({
-      nim: "",
-      name: "",
-      major: "",
-    })
-}
+  }
 
 componentDidMount() {
   this.getShowAPI();

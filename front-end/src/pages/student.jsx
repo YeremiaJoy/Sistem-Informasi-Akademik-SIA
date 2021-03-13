@@ -10,7 +10,6 @@ export default class student extends Component {
         super(props);
         this.state = {
             show: false,
-            key:1,
             majors: [],
             students: [],
             datas: [],
@@ -113,7 +112,6 @@ export default class student extends Component {
                     <Col >
                         <Button variant="success" onClick={handleShow}>Add Student</Button>
                         <ModalStudent 
-                            key={this.state.key}
                             show={this.state.show} 
                             onHide={handleClose} 
                             Major={this.state.majors} 
@@ -133,7 +131,7 @@ export default class student extends Component {
                     </thead>
                     <tbody>
                         {this.state.students.map(student =>
-                            <tr>
+                            <tr key={student.id}>
                                 <td>{this.state.index}</td>
                                 <td>{student.nim}</td>
                                 <td>{student.name}</td>

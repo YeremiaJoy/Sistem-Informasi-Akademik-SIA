@@ -9,6 +9,8 @@ class major extends Component {
     super(props);
     this.state = {
       addModalShow: false,
+      majors: [],
+      index: 0,
       majorPost: {
         code: '',
         major_name: ''
@@ -18,10 +20,12 @@ class major extends Component {
 
   getPostAPI = () => {
     axios.get(URL_API + "major").then((res) => {
-      this.setState({
-        majorPost: res.data
-      })
+      this.setState({majors: res.data})
     })
+  }
+
+  componentDidMount() {
+    this.getPostAPI();
   }
 
   // handleFormChange = (e) => {
@@ -51,28 +55,28 @@ class major extends Component {
           </Col>
           <Col >
             <Button variant="success" onClick={() => this.setState({ addModalShow: true })} >Add Major</Button>
-            <ModalMajor show={this.state.addModalShow} onHide={addModalCLose} Major={this.props.majorPost}/>
+            <ModalMajor show={this.state.addModalShow} onHide={addModalCLose}/>
           </Col>
         </Row>
         <Table striped>
           <thead>
             <tr>
               <th>No</th>
+              <th>Code</th>
               <th>Nama Major</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Informatika</td>
-              <td><Button variant="danger" style={style.button_danger}>Update</Button></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Management</td>
-              <td><Button variant="danger" style={style.button_danger}>Update</Button></td>
-            </tr>
+            {
+              this.state.majors.map(major =>
+                <tr key={major.id}>
+                  <td>{this.state.index}</td>
+                  <td>{major.code}</td>
+                  <td>{major.major_name}</td>
+                  <td><Button variant="danger" style={style.button_danger}>Update</Button></td>
+                </tr>
+            )}
           </tbody>
         </Table>
       </Container>

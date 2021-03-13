@@ -15,16 +15,19 @@ const ModalMajor = (props) => {
           Major
         </Modal.Title>
       </Modal.Header>
-      <Form>
+      <Form onSubmit={(e) => this.props.handleSubmit(e)}>
         <Modal.Body>
           <Form.Group controlId="InputMajorCode">
             <Form.Label>Code Major</Form.Label>
-            <Form.Control type="name" placeholder="Input Code Major" autoComplete="off" required />
+            <Form.Control type="name" name="code" placeholder="Input Code Major" autoComplete="off" required onChange={(c) => props.handleChangeCode(c.target.value)}/>
+            <Form.Text>
+              <pre>{props.major_name}</pre>
+            </Form.Text>
           </Form.Group>
 
           <Form.Group controlId="InputMajorName">
             <Form.Label>Major Name</Form.Label>
-            <Form.Control type="text" placeholder="Input Major Name" autoComplete="off" required />
+            <Form.Control type="text" name="major_name" placeholder="Input Major Name" autoComplete="off" required onChange={(m) => props.handleChangeMajor(m.target.value)}/>
           </Form.Group>
 
         </Modal.Body>

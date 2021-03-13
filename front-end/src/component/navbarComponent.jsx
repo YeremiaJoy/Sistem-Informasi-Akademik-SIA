@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Navbar, Nav } from "react-bootstrap"
-import $ from 'jquery'
+import {Link} from 'react-router-dom'
 
 class navbarComponents extends Component {
     constructor(props) {
@@ -26,17 +26,32 @@ class navbarComponents extends Component {
                     className: "side_nav_item"
                 }
             ],
-            activeLink: null
+            activeLink: 1
         };
     }
 
     handleClick = id => {
-        console.log(this.state)
-        console.log(id)
+        console.log(name);
+        console.log(this.state.activeLink);
         this.setState({ activeLink: id });
     };
 
     render() {
+        const activeStyle = {
+                color: '#ffffff',
+                textDecoration: "none",
+                paddingRight: '5px',
+                paddingLeft: '5px'
+        }
+        
+        const navitem = {
+            Link: {
+                textDecoration: "none",
+                paddingRight: '5px',
+                paddingLeft: '5px'
+            }
+        }
+        
         const { links, activeLink } = this.state;
         return (
             <>
@@ -45,11 +60,11 @@ class navbarComponents extends Component {
                     <Nav className="mr-auto">
                         {links.map(link => {
                             return (
-                                <Nav.Link key={link.id} href={link.to} onClick={() => this.handleClick.bind(link.id)}
-                                    className={
-                                        link.className +
-                                        (link.id === activeLink ? "active" : "")
-                                    } > {link.name} </Nav.Link>
+                                <Link key={link.id} to={link.to} onClick={() => this.handleClick(link.id)}
+                                    style={
+                                        (link.id === activeLink ? activeStyle : navitem.Link )}
+                                    >
+                                    {link.name} </Link>
 
                             );
                         }

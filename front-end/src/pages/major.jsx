@@ -88,9 +88,6 @@ render() {
       <Row style={style.judul}>
         <Col xs={12} md={10}>
           <h2>List Major</h2>
-          {/* <p>
-            <pre>{this.state.code}</pre>
-          </p> */}
         </Col>
         <Col >
           <Button variant="success" onClick={() => this.setState({ addModalShow: true })} >Add Major</Button>

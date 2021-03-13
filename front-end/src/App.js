@@ -5,11 +5,12 @@ import NavbarComponent from "./component/navbarComponent"
 import student from "./pages/student";
 import major from "./pages/major";
 
+
 function App() {
   return (
     <BrowserRouter>
       <main>
-        <NavbarComponent />
+        <NavbarComponent/>
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/student" component={student} exact />

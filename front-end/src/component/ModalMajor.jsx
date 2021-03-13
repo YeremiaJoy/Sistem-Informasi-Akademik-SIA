@@ -21,9 +21,9 @@ const ModalMajor = (props) => {
           <Form.Group controlId="InputMajorCode">
             <Form.Label>Code Major</Form.Label>
             <Form.Control type="name" name="code" placeholder="Input Code Major" autoComplete="off" required onChange={(c) => props.handleChangeCode(c.target.value)}/>
-            <Form.Text>
+            {/* <Form.Text>
               <pre>{props.major_name}</pre>
-            </Form.Text>
+            </Form.Text> */}
           </Form.Group>
 
           <Form.Group controlId="InputMajorName">

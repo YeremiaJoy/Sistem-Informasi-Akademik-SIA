@@ -10,8 +10,7 @@ class major extends Component {
     this.state = {
       addModalShow: false,
       majors: [], //database json fake api
-      index: 1,
-      id: this.index,
+      id: 0,
       code: null,
       major_name: null
 
@@ -50,18 +49,18 @@ class major extends Component {
         addModalShow: false
       })
       swal({
-        title: "Sukses Add Student",
-        text: "Sukses Add Student " + this.state.name,
+        title: "Sukses Add Major",
+        text: "Sukses Add Major " + this.state.name,
         icon: "success",
         button: false,
         timer: 1500,
       });
     }).catch((error) => {
       console.log("Error yaa ", error);
-      console.log("dataUser", dataStudent);
+      console.log("dataUser", dataMajor);
       swal({
-        title: "Gagal Add Student",
-        text: "Gagal Add Student",
+        title: "Gagal Add Major",
+        text: "Gagal Add Major",
         icon: "danger",
         button: false,
         timer: 1500,
@@ -93,9 +92,9 @@ render() {
       <Row style={style.judul}>
         <Col xs={12} md={10}>
           <h2>List Major</h2>
-          <p>
+          {/* <p>
             <pre>{this.state.code}</pre>
-          </p>
+          </p> */}
         </Col>
         <Col >
           <Button variant="success" onClick={() => this.setState({ addModalShow: true })} >Add Major</Button>
@@ -115,7 +114,7 @@ render() {
           {
             this.state.majors.map(major =>
               <tr key={major.id}>
-                <td>{this.state.index}</td>
+                <td>{major.id}</td>
                 <td>{major.code}</td>
                 <td>{major.major_name}</td>
                 <td><Button variant="danger" style={style.button_danger}>Update</Button></td>

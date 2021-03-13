@@ -10,10 +10,9 @@ class major extends Component {
     this.state = {
       addModalShow: false,
       majors: [], //database json fake api
-      id: 0,
+      id: null,
       code: null,
       major_name: null
-
     }
   }
 
@@ -43,14 +42,9 @@ class major extends Component {
     }
     axios.post(URL_API + "major", dataMajor).then((res) => {
       this.getShowAPI();
-      this.setState({
-        code: null,
-        major_name: null,
-        addModalShow: false
-      })
       swal({
         title: "Sukses Add Major",
-        text: "Sukses Add Major " + this.state.name,
+        text: "Sukses Add Major " + this.state.major_name,
         icon: "success",
         button: false,
         timer: 1500,
@@ -66,12 +60,14 @@ class major extends Component {
         timer: 1500,
       });
     });
-
+    this.setState({
+      addModalShow: false,
+    })
   }
 
-componentDidMount() {
-  this.getShowAPI();
-}
+  componentDidMount() {
+    this.getShowAPI();
+  }
 
 render() {
   const style = {

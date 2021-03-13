@@ -46,6 +46,8 @@ class navbarComponents extends Component {
         
         const navitem = {
             Link: {
+                color: '#737373',
+                fontWeight: 'bold',
                 textDecoration: "none",
                 paddingRight: '5px',
                 paddingLeft: '5px'

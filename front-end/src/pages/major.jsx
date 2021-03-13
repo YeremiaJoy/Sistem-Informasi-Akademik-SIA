@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 import ModalMajor from '../component/ModalMajor'
 import { URL_API } from '../utils/constant'
+import swal from 'sweetalert'
 
 class major extends Component {
   constructor(props) {

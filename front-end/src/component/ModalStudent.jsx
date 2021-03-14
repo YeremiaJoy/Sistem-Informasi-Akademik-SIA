@@ -14,19 +14,19 @@ const ModalStudent = (props) => {
                     New Student
             </Modal.Title>
             </Modal.Header>
-            <Form onSubmit={props.HandleSubmit}>
+            <Form onSubmit={(event) => props.HandleSubmit(event)}>
                 <Modal.Body>
                     <Form.Group controlId="formBasicNama">
                         <Form.Label>Nama Lengkap</Form.Label>
-                        <Form.Control type="name" name="name" placeholder="Masukkan Nama Lengkap" autoComplete="off" required onChange={props.HandleChange}/>
+                        <Form.Control type="name" name="name" placeholder="Masukkan Nama Lengkap" onChange={(event) => props.HandleChange(event)} autoComplete="off"  required />
                     </Form.Group>
                     <Form.Group controlId="formBasicNim">
                         <Form.Label>NIM</Form.Label>
-                        <Form.Control type="name" name="nim" placeholder="NIM" autoComplete="off" required onChange={props.HandleChange}/>
+                        <Form.Control type="name" name="nim" placeholder="NIM" onChange={(event) => props.HandleChange(event)} autoComplete="off" required />
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridMajor">
                         <Form.Label>Major</Form.Label>
-                        <Form.Control name = "major" as="select" defaultValue="Informatika">
+                        <Form.Control name = "major" as="select" defaultValue="Informatika" onChange={(event) => props.HandleChange(event)}>
                             {props.Major.map(major => <option key={major.id}>{major.major_name}</option> )} 
                         </Form.Control>
                     </Form.Group>

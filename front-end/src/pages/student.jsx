@@ -14,6 +14,7 @@ export default class student extends Component {
             students: [],
             datas: [],
             index: 1,
+            id: "",
             name: "",
             nim: "",
             major: "",
@@ -31,7 +32,7 @@ export default class student extends Component {
     }
 
     handleChange = (event) => {
-        this.state({
+        this.setState({
             [event.target.name]: event.target.value,
         })
     }
@@ -54,7 +55,7 @@ export default class student extends Component {
         });
 
         const dataStudent = {
-            id: indexID,
+            id: this.state.id,
             nim: this.state.nim,
             name: this.state.name,
             major: this.state.major
@@ -79,14 +80,16 @@ export default class student extends Component {
               timer: 1500,
             });
           });
-
-        this.setState({
-            nim: "",
-            name:"",
-            major:"",
-        })
+        
+          
+          this.setState({
+              show: false
+            })
     }
 
+    handleClose = () => this.setState({ show: false })
+    handleShow = () => this.setState({ show: true })
+    
     render() {
         const style = {
             button_update: {
@@ -100,8 +103,8 @@ export default class student extends Component {
             }
         }
 
-        const handleClose = () => this.setState({ show: false })
-        const handleShow = () => this.setState({ show: true })
+        // const handleClose = () => this.setState({ show: false })
+        // const handleShow = () => this.setState({ show: true })
         return (
             <Container style={style.container}>
                 <Row style={style.judul}>
@@ -110,13 +113,13 @@ export default class student extends Component {
                         {/* {this.state.majors.map(major => <p>{major.code}</p> )}  */}
                     </Col>
                     <Col >
-                        <Button variant="success" onClick={handleShow}>Add Student</Button>
+                        <Button variant="success" onClick={this.handleShow}>Add Student</Button>
                         <ModalStudent 
                             show={this.state.show} 
-                            onHide={handleClose} 
+                            onHide={this.handleClose} 
                             Major={this.state.majors} 
                             HandleSubmit={this.handleSubmit} 
-                            HandleChange={(event) => this.handleChange}/>
+                            HandleChange={this.handleChange}/>
                     </Col>
                 </Row>
                 <Table striped>
@@ -132,7 +135,7 @@ export default class student extends Component {
                     <tbody>
                         {this.state.students.map(student =>
                             <tr key={student.id}>
-                                <td>{this.state.index}</td>
+                                <td>{student.id}</td>
                                 <td>{student.nim}</td>
                                 <td>{student.name}</td>
                                 <td>{student.major}</td>

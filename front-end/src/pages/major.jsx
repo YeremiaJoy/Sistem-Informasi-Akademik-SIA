@@ -11,9 +11,11 @@ class major extends Component {
     this.state = {
       addModalShow: false,
       majors: [], //database json fake api
-      id: null,
-      code: null,
-      major_name: null
+      addMajor: { //add data baru
+        id: null,
+        code: null,
+        major_name: null
+      }
     }
   }
 
@@ -23,36 +25,28 @@ class major extends Component {
     })
   }
 
-  handleChangeCode = (c) => {
+  handleChange = (event) => {
+    let addMajorNew = {...this.state.addMajor};
+    addMajorNew[event.target.name] = event.target.value;
     this.setState({
-      code: c,
-    })
-  }
-  handleChangeMajor = (m) => {
-    this.setState({
-      major_name: m,
-    })
+      addMajor: addMajorNew
+    }) 
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const dataMajor = {
-      id: this.state.id,
-      code: this.state.code,
-      major_name: this.state.major_name
-    }
-    axios.post(URL_API + "major", dataMajor).then((res) => {
+    axios.post(URL_API + "major", this.state.addMajor).then((res) => {
       this.getShowAPI();
       swal({
         title: "Sukses Add Major",
-        text: "Sukses Add Major " + this.state.major_name,
+        text: "Sukses Add Major " + this.state.addMajor.major_name,
         icon: "success",
         button: false,
         timer: 1500,
       });
     }).catch((error) => {
       console.log("Error yaa ", error);
-      console.log("dataUser", dataMajor);
+      console.log("dataUser", addMajor);
       swal({
         title: "Gagal Add Major",
         text: "Gagal Add Major",
@@ -92,7 +86,7 @@ render() {
         </Col>
         <Col >
           <Button variant="success" onClick={() => this.setState({ addModalShow: true })} >Add Major</Button>
-          <ModalMajor show={this.state.addModalShow} onHide={addModalCLose} code={this.state.code} major_name={this.state.major_name} handleChangeCode={this.handleChangeCode} handleChangeMajor={this.handleChangeMajor} handleSubmit={this.handleSubmit} />
+          <ModalMajor show={this.state.addModalShow} onHide={addModalCLose} code={this.state.code} major_name={this.state.major_name} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
         </Col>
       </Row>
       <Table striped>

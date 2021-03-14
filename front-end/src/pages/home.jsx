@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Card, Button, Tabs, Tab, Container } from 'react-bootstrap';
-import navbarComponents from '../component/navbarComponent'
 
 class home extends Component {
   render() {

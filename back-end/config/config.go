@@ -7,33 +7,34 @@ import (
 	"log"
 	"os"
 
-	"honnef.co/go/tools/config"
+	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
 func CreateConnection() *sql.DB {
-	// load .env file
-	err := config.Load(".env")
+	// buka file .env
+	err := godotenv.Load(".env")
 
 	if err != nil {
-		log.Fatalf("Error loading .env file")
+		log.Fatalf("Error Load .env file :)")
 	}
 
-	// Kita buka koneksi ke db
+	// buka koneksi db nya
 	db, err := sql.Open("postgres", os.Getenv("POSTGRES_URL"))
 
 	if err != nil {
 		panic(err)
 	}
 
-	// check the connection
 	err = db.Ping()
 
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println("Sukses Konek ke Db!")
-	// return the connection
+	fmt.Println("Sukses konek ke DB :*")
+
+	// return connection
 	return db
 }
 
@@ -51,8 +52,8 @@ func (s NullString) MarshalJSON() ([]byte, error) {
 func (s *NullString) UnmarshalJSON(data []byte) error {
 	if string(data) == "null" {
 		s.String, s.Valid = "", false
-		return nil
 	}
 	s.String, s.Valid = string(data), true
+
 	return nil
 }

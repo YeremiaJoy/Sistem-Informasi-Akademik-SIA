@@ -46,7 +46,7 @@ class major extends Component {
       });
     }).catch((error) => {
       console.log("Error yaa ", error);
-      console.log("dataUser", addMajor);
+      console.log("dataUser", this.state.addMajor);
       swal({
         title: "Gagal Add Major",
         text: "Gagal Add Major",

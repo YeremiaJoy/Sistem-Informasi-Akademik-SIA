@@ -16,7 +16,7 @@ class student extends Component {
         id: null,
         name: null,
         nim: null,
-        major_name: null
+        major: null
       }
     }
   }
@@ -143,7 +143,7 @@ class student extends Component {
                 <td>{student.id}</td>
                 <td>{student.nim}</td>
                 <td>{student.name}</td>
-                <td>{student.major_name}</td>
+                <td>{student.major}</td>
                 <td><Button variant="warning" style={style.button_update}>Update</Button>
                 <Button variant="danger" id= {student.id} onClick={this.deleteData}>Delete</Button></td>
               </tr>

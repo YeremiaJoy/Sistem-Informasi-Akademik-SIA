@@ -73,10 +73,36 @@ class student extends Component {
   handleClose = () => this.setState({ show: false })
   handleShow = () => this.setState({ show: true })
 
+  deleteData = (e) => {
+    var id = e.target.id
+
+    axios.delete(URL_API+`student/`, id).then(res => {
+        
+        swal({
+            title: "Sukses hapus Student",
+            text: "Sukses hapus Student ",
+            icon: "success",
+            button: false,
+            timer: 1500,
+          });
+        }).catch((error) => {
+          console.log("Error yaa ", error);
+          console.log("dataUser");
+          swal({
+            title: "Gagal hapus Student",
+            text: "Gagal hapus Student",
+            icon: "danger",
+            button: false,
+            timer: 1500,
+          });
+        });
+  }
+
   render() {
     const style = {
       button_update: {
-        textAlign: "center"
+        textAlign: "center",
+        marginRight: "10px"
       },
       container: {
         marginTop: "70px"
@@ -118,7 +144,8 @@ class student extends Component {
                 <td>{student.nim}</td>
                 <td>{student.name}</td>
                 <td>{student.major_name}</td>
-                <td><Button variant="warning" style={style.button_update}>Update</Button></td>
+                <td><Button variant="warning" style={style.button_update}>Update</Button>
+                <Button variant="danger" id= {student.id} onClick={this.deleteData}>Delete</Button></td>
               </tr>
             )}
           </tbody>

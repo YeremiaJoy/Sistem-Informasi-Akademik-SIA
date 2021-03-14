@@ -31,8 +31,6 @@ class navbarComponents extends Component {
     }
 
     handleClick = id => {
-        console.log(name);
-        console.log(this.state.activeLink);
         this.setState({ activeLink: id });
     };
 

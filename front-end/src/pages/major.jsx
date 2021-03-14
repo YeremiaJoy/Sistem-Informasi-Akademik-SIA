@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 import ModalMajor from '../component/ModalMajor'
@@ -25,7 +25,7 @@ class major extends Component {
     })
   }
 
-  handleChange = (event) => {
+  handlechange = (event) => {
     let addMajorNew = {...this.state.addMajor};
     addMajorNew[event.target.name] = event.target.value;
     this.setState({
@@ -33,7 +33,11 @@ class major extends Component {
     }) 
   }
 
-  handleSubmit = (e) => {
+  componentDidMount() {
+    this.getShowAPI();
+  }
+
+  handlesubmit = (e) => {
     e.preventDefault()
     axios.post(URL_API + "major", this.state.addMajor).then((res) => {
       this.getShowAPI();
@@ -60,10 +64,6 @@ class major extends Component {
     })
   }
 
-  componentDidMount() {
-    this.getShowAPI();
-  }
-
 render() {
   const style = {
     button_delete: {
@@ -86,7 +86,10 @@ render() {
         </Col>
         <Col >
           <Button variant="success" onClick={() => this.setState({ addModalShow: true })} >Add Major</Button>
-          <ModalMajor show={this.state.addModalShow} onHide={addModalCLose} code={this.state.code} major_name={this.state.major_name} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+          <ModalMajor 
+          show={this.state.addModalShow} 
+          onHide={addModalCLose} 
+          handlechange={this.handlechange} handlesubmit={this.handlesubmit} />
         </Col>
       </Row>
       <Table striped>
@@ -99,8 +102,7 @@ render() {
           </tr>
         </thead>
         <tbody>
-          {
-            this.state.majors.map(major =>
+          {this.state.majors.map(major =>
               <tr key={major.id}>
                 <td>{major.id}</td>
                 <td>{major.code}</td>

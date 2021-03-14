@@ -14,27 +14,28 @@ const ModalStudent = (props) => {
                     New Student
             </Modal.Title>
             </Modal.Header>
-            <Form onSubmit={(event) => props.HandleSubmit(event)}>
+
+            <Form onSubmit={(e) => props.handlesubmit(e)}>
                 <Modal.Body>
                     <Form.Group controlId="formBasicNama">
                         <Form.Label>Nama Lengkap</Form.Label>
-                        <Form.Control type="name" name="name" placeholder="Masukkan Nama Lengkap" onChange={(event) => props.HandleChange(event)} autoComplete="off"  required />
+                        <Form.Control type="name" name="name" placeholder="Masukkan Nama Lengkap" onChange={props.handlechange} autoComplete="off" required />
                     </Form.Group>
                     <Form.Group controlId="formBasicNim">
                         <Form.Label>NIM</Form.Label>
-                        <Form.Control type="name" name="nim" placeholder="NIM" onChange={(event) => props.HandleChange(event)} autoComplete="off" required />
+                        <Form.Control type="name" name="nim" placeholder="NIM" onChange={props.handlechange} autoComplete="off" required />
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridMajor">
                         <Form.Label>Major</Form.Label>
-                        <Form.Control name = "major" as="select" defaultValue="Informatika" onChange={(event) => props.HandleChange(event)}>
-                            {props.Major.map(major => <option key={major.id}>{major.major_name}</option> )} 
+                        <Form.Control name="major_name" as="select" defaultValue="Informatika" onChange={props.handleChange}>
+                            {props.major.map(major => <option key={major.id}>{major.major_name}</option>)}
                         </Form.Control>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" type="submit">Submit</Button>
                     <Button variant="danger" onClick={props.onHide}>Close</Button>
-                    </Modal.Footer>
+                </Modal.Footer>
             </Form>
         </Modal>
     );

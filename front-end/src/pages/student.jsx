@@ -119,7 +119,7 @@ class student extends Component {
           </Col>
           <Col >
             <Button variant="success" onClick={this.handleShow}>Add Student</Button>
-            <ModalStudent
+            <AddStudent
               show={this.state.show}
               onHide={this.handleClose}
               major={this.state.majors}

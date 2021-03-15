@@ -115,7 +115,7 @@ render() {
         </Col>
         <Col >
           <Button variant="success" onClick={() => this.setState({ addModalShow: true })} >Add Major</Button>
-          <ModalMajor 
+          <AddMajor 
           show={this.state.addModalShow} 
           onHide={addModalCLose} 
           handlechange={this.handlechange} handlesubmit={this.handlesubmit} />

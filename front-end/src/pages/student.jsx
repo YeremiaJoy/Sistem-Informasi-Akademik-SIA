@@ -75,7 +75,7 @@ class student extends Component {
 
   deleteData = (e) => {
     var id = e.target.id
-
+    {this.state.id}
     axios.delete(URL_API+`student/`, id).then(res => {
         
         swal({

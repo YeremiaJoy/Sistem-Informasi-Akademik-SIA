@@ -4,6 +4,7 @@ import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 import ModalMajor from '../component/ModalMajor'
 import { URL_API } from '../utils/constant'
 import swal from 'sweetalert'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class major extends Component {
   constructor(props) {
@@ -64,10 +65,38 @@ class major extends Component {
     })
   }
 
+  deleteData = (data) => {
+    axios.delete(URL_API + `major/${data}`).then((res)=>{
+      this.getShowAPI();
+      swal({
+        title: "Sukses Delete Major",
+        text: "Sukses Delete Major " + data,
+        icon: "success",
+        button: false,
+        timer: 1500,
+      });
+    }).catch((error) => {
+      console.log("Error yaa ", error);
+      console.log("dataUser", this.state.data);
+      swal({
+        title: "Gagal Delete Major",
+        text: "Gagal Delete Major",
+        icon: "danger",
+        button: false,
+        timer: 1500,
+      });
+    });
+  }
+
 render() {
   const style = {
+    button_update: {
+      textAlign: "center",
+      marginRight: "10px"
+    },
     button_delete: {
-      textAlign: "center"
+      textAlign: "center",
+      paddingInline: "20px"
     },
     container: {
       marginTop: "70px"
@@ -107,7 +136,8 @@ render() {
                 <td>{major.id}</td>
                 <td>{major.code}</td>
                 <td>{major.major_name}</td>
-                <td><Button variant="danger" style={style.button_danger}>Update</Button></td>
+                <td><Button variant="warning" style={style.button_update}>Update</Button>
+                <Button variant="danger" style={style.button_delete} onClick={()=>this.deleteData(major.id)}><DeleteIcon/></Button></td>           
               </tr>
             )}
         </tbody>

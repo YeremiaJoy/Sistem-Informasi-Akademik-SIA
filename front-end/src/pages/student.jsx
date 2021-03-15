@@ -116,9 +116,6 @@ class student extends Component {
         <Row style={style.judul}>
           <Col xs={12} md={10}>
             <h2>List Student</h2>
-            <p>{this.state.addStudent.name}</p>
-            <p>{this.state.addStudent.nim}</p>
-            <p>{this.state.addStudent.major}</p>
           </Col>
           <Col >
             <Button variant="success" onClick={this.handleShow}>Add Student</Button>

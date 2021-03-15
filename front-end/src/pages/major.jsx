@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
-import ModalMajor from '../component/Major/ModalMajor'
+import ModalMajor from '../component/Major/AddMajor'
 import { URL_API } from '../utils/constant'
 import swal from 'sweetalert'
 import DeleteIcon from '@material-ui/icons/Delete';

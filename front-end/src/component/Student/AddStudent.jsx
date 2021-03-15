@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button, Form, Col } from "react-bootstrap"
 
-const ModalStudent = (props) => {
+const AddStudent = (props) => {
     return (
         <Modal
             {...props}
@@ -40,4 +40,4 @@ const ModalStudent = (props) => {
         </Modal>
     );
 }
-export default ModalStudent;
+export default AddStudent;

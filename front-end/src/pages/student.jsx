@@ -1,7 +1,7 @@
 import axios from "axios"
 import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from "react-bootstrap"
-import ModalStudent from '../component/Student/AddStudent';
+import AddStudent from '../component/Student/AddStudent';
 import { URL_API } from '../utils/constant'
 import swal from "sweetalert";
 

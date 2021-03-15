@@ -2,7 +2,7 @@ import React from "react"
 import { Modal, Button, Form } from "react-bootstrap"
 import "react-bootstrap/ModalHeader"
 
-const ModalMajor = (props) => {
+const AddMajor = (props) => {
   return (
     <Modal
       {...props}
@@ -38,5 +38,5 @@ const ModalMajor = (props) => {
   );
 }
 
-export default ModalMajor;
+export default AddMajor;
 

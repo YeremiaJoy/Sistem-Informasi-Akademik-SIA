@@ -23,7 +23,7 @@ const NavbarComponent = () => {
  
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Sistem Informasi Akademik</Navbar.Brand>
+            <Navbar.Brand href="/">Sistem Informasi Akademik</Navbar.Brand>
             <Nav className="mr-auto">
                 {NavbarData.map((val, key) => {
                     return (

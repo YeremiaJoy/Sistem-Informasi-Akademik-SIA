@@ -19,7 +19,7 @@ const UpdateMajor = (props) => {
         <Modal.Body>
           <Form.Group controlId="InputMajorCode">
             <Form.Label>Code Major</Form.Label>
-            <Form.Control type="name" name="code" placeholder="Input Code Major" autoComplete="off" required onChange={props.handlechange}/>
+            <Form.Control type="name" name="code" placeholder={props.major.major_name} autoComplete="off" required onChange={props.handlechange}/>
           </Form.Group>
 
           <Form.Group controlId="InputMajorName">

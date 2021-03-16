@@ -90,6 +90,10 @@ class major extends Component {
     });
   }
 
+  updateData = (data) => {
+    console.log(data);
+  }
+
   render() {
     const style = {
       button_update: {
@@ -143,8 +147,10 @@ class major extends Component {
                 <td><Button variant="warning" style={style.button_update} onClick={() => this.setState({updateMajorShow: true})} >Update</Button>
                   <UpdateMajor
                     show={this.state.updateMajorShow}
+                    major={this.state.majors}
                     onHide={updateMajorClose}
-                    handlechange={this.handlechange} handlesubmit={this.handlesubmit} />
+                    onClick={() => this.updateData(major.id)}
+                    />
                   <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(major.id)} ><DeleteIcon /></Button></td>
               </tr>
             )}

@@ -24,12 +24,12 @@ const NavbarComponent = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="/">Sistem Informasi Akademik</Navbar.Brand>
-            <Nav className="mr-auto">
+            <Nav>
                 {NavbarData.map((val, key) => {
                     return (
                         <Link
                             key={key}
-                            style={window.location.pathname == val.link ? style.activeStyle : style.navitem}
+                            to={val.link} style={window.location.pathname == val.link ? style.activeStyle : style.navitem}
                             onClick={() => { window.location.pathname = val.link; }}
                         >
                             <div>{val.name}</div>

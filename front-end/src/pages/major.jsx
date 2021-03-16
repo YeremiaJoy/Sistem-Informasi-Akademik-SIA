@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 import AddMajor from '../component/Major/AddMajor'
+import UpdateMajor from '../component/Major/UpdateMajor'
 import { URL_API } from '../utils/constant'
 import swal from 'sweetalert'
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -10,7 +11,8 @@ class major extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addModalShow: false,
+      addMajorShow: false,
+      updateMajorShow: false,
       majors: [], //database json fake api
       addMajor: { //add data baru
         id: null,
@@ -27,11 +29,11 @@ class major extends Component {
   }
 
   handlechange = (event) => {
-    let addMajorNew = {...this.state.addMajor};
+    let addMajorNew = { ...this.state.addMajor };
     addMajorNew[event.target.name] = event.target.value;
     this.setState({
       addMajor: addMajorNew
-    }) 
+    })
   }
 
   componentDidMount() {
@@ -61,12 +63,12 @@ class major extends Component {
       });
     });
     this.setState({
-      addModalShow: false,
+      addMajorShow: false,
     })
   }
 
   deleteData = (data) => {
-    axios.delete(URL_API + `major/${data}`).then((res)=>{
+    axios.delete(URL_API + `major/${data}`).then((res) => {
       this.getShowAPI();
       swal({
         title: "Sukses Delete Major",
@@ -88,64 +90,69 @@ class major extends Component {
     });
   }
 
-render() {
-  const style = {
-    button_update: {
-      textAlign: "center",
-      marginRight: "10px"
-    },
-    button_delete: {
-      textAlign: "center",
-      paddingInline: "20px"
-    },
-    container: {
-      marginTop: "70px"
-    },
-    judul: {
-      marginBottom: "20px"
+  render() {
+    const style = {
+      button_update: {
+        textAlign: "center",
+        marginRight: "10px"
+      },
+      button_delete: {
+        textAlign: "center",
+        paddingInline: "20px"
+      },
+      container: {
+        marginTop: "70px"
+      },
+      judul: {
+        marginBottom: "20px"
+      }
     }
-  }
-  let addModalCLose = () => this.setState({ addModalShow: false });
+    let addMajorCLose = () => this.setState({ addMajorShow: false });
+    let updateMajorClose = () => this.setState({ updateMajorShow: false });
 
-  return (
-    <Container style={style.container}>
-      <Row style={style.judul}>
-        <Col xs={12} md={10}>
-          <h2>List Major</h2>
-        </Col>
-        <Col >
-          <Button variant="success" onClick={() => this.setState({ addModalShow: true })} >Add Major</Button>
-          <AddMajor 
-          show={this.state.addModalShow} 
-          onHide={addModalCLose} 
-          handlechange={this.handlechange} handlesubmit={this.handlesubmit} />
-        </Col>
-      </Row>
-      <Table striped>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Code</th>
-            <th>Nama Major</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          {this.state.majors.map((major,index) =>
+    return (
+      <Container style={style.container}>
+        <Row style={style.judul}>
+          <Col xs={12} md={10}>
+            <h2>List Major</h2>
+          </Col>
+          <Col >
+            <Button variant="success" onClick={() => this.setState({ addMajorShow: true })} >Add Major</Button>
+            <AddMajor
+              show={this.state.addMajorShow}
+              onHide={addMajorCLose}
+              handlechange={this.handlechange} handlesubmit={this.handlesubmit} />
+          </Col>
+        </Row>
+        <Table striped>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Code</th>
+              <th>Nama Major</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {this.state.majors.map((major, index) =>
               <tr key={major.id} >
-                <td>{index+1}</td>
+                <td>{index + 1}</td>
                 <td>{major.code}</td>
                 <td>{major.major_name}</td>
-                <td><Button variant="warning" style={style.button_update}>Update</Button>
-                <Button variant="danger" style={style.button_delete} onClick={()=>this.deleteData(major.id)} ><DeleteIcon/></Button></td>           
+                <td><Button variant="warning" style={style.button_update} onClick={() => this.setState({updateMajorShow: true})} >Update</Button>
+                  <UpdateMajor
+                    show={this.state.updateMajorShow}
+                    onHide={updateMajorClose}
+                    handlechange={this.handlechange} handlesubmit={this.handlesubmit} />
+                  <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(major.id)} ><DeleteIcon /></Button></td>
               </tr>
             )}
-        </tbody>
-      </Table>
-    </Container>
-  )
-}
+          </tbody>
+        </Table>
+      </Container>
+    )
+  }
 }
 
 export default major;

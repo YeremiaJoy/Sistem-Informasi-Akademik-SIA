@@ -1,9 +1,9 @@
 import React from "react"
 import { Modal, Button, Form } from "react-bootstrap"
 
-const AddMajor = (props) => {
-  return (
-    <Modal
+const UpdateMajor = (props) => {
+    return(
+        <Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
@@ -11,7 +11,7 @@ const AddMajor = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Add Major
+          Update Major
         </Modal.Title>
       </Modal.Header>
       
@@ -34,8 +34,7 @@ const AddMajor = (props) => {
         </Modal.Footer>
       </Form>
     </Modal>
-  );
+    )
 }
 
-export default AddMajor;
-
+export default UpdateMajor;

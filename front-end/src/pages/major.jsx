@@ -104,7 +104,6 @@ class major extends Component {
   };
 
   handleupdate = (data) => {
-    console.log(data);
     axios.put(URL_API + `major/${data}`, this.state.addMajor).then((res) => {
       this.getShowAPI();
       swal({
@@ -124,9 +123,6 @@ class major extends Component {
         button: false,
         timer: 1500,
       });
-    });
-    this.setState({
-      addMajorShow: false,
     });
   }
 

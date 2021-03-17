@@ -11,6 +11,7 @@ class student extends Component {
     super(props);
     this.state = {
       show: false,
+      value: null,
       majors: [],
       students: [],
       addStudent: {
@@ -109,7 +110,6 @@ class student extends Component {
   };
 
   handleupdate = (data) => {
-    console.log(data);
     axios.put(URL_API + `student/${data}`, this.state.addStudent).then((res) => {
       this.getShowAPI();
       swal({
@@ -148,22 +148,28 @@ class student extends Component {
         marginBottom: "20px"
       }
     }
+
     return (
       <Container style={style.container}>
         <Row style={style.judul}>
           <Col xs={12} md={10}>
             <h2>List Student</h2>
-            {this.state.addStudent.major}
           </Col>
           <Col >
+          {this.state.majors.slice(0,1).map((major,index) => {
+            if(index==0){
+              this.state.value = major.major_name 
+            }
+          })}
             <Button variant="success" onClick={() => {
                 this.setState({show: true, addStudent: {
                 id: null,
                 name: null,
                 nim: null,
-                major: null
-              }
-            })}}> Add Student</Button>
+                major: this.state.value
+                }})
+                }}              
+              > Add Student</Button>
 
             <ModalStudent
               show={this.state.show}

@@ -18,7 +18,9 @@ const AddStudent = (props) => {
             <Form onSubmit={(e) => props.handlesubmit(e)}>
                 <Modal.Body>
                     <Form.Group controlId="formBasicNama">
-                        <Form.Label>Nama Lengkap</Form.Label>
+                        <Form.Label>
+                            Nama Lengkap
+                        </Form.Label>
                         <Form.Control type="name" name="name" placeholder="Masukkan Nama Lengkap" onChange={props.handlechange} autoComplete="off" required />
                     </Form.Group>
                     <Form.Group controlId="formBasicNim">

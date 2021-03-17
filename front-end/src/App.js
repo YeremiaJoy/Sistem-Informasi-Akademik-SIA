@@ -13,9 +13,9 @@ function App() {
       <main>
         <NavbarComponent/>
         <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/major" component={major}/>
-          <Route path="/student" component={student} />
+          <Route path="/" exact component={Home} />
+          <Route path="/major" exact component={major}/>
+          <Route path="/student" exact component={student} />
         </Switch>
       </main>
     </BrowserRouter>

@@ -11,7 +11,6 @@ class major extends Component {
     super(props);
     this.state = {
       addMajorShow: false,
-      updateMajorShow: false,
       majors: [], //database json fake api
       addMajor: { //add data baru
         id: null,
@@ -109,8 +108,8 @@ class major extends Component {
     axios.put(URL_API + `major/${data}`, this.state.addMajor).then((res) => {
       this.getShowAPI();
       swal({
-        title: "Sukses Add Major",
-        text: "Sukses Add Major " + this.state.addMajor.major_name,
+        title: "Sukses Update Major",
+        text: "Sukses Update Major " + this.state.addMajor.major_name,
         icon: "success",
         button: false,
         timer: 1500,
@@ -119,8 +118,8 @@ class major extends Component {
       console.log("Error yaa ", error);
       console.log("dataUser", this.state.addMajor);
       swal({
-        title: "Gagal Add Major",
-        text: "Gagal Add Major",
+        title: "Gagal Update Major",
+        text: "Gagal Update Major",
         icon: "danger",
         button: false,
         timer: 1500,
@@ -168,7 +167,9 @@ class major extends Component {
               show={this.state.addMajorShow}
               onHide={addMajorClose}
               major={this.state.addMajor}
-              handlechange={this.handlechange} handlesubmit={this.handlesubmit} handleupdate={this.handleupdate}
+              handlechange={this.handlechange} 
+              handlesubmit={this.handlesubmit} 
+              handleupdate={this.handleupdate}
             />
           </Col>
         </Row>

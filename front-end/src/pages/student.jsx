@@ -1,9 +1,10 @@
 import axios from "axios"
 import React, { Component } from 'react'
 import { Container, Table, Button, Row, Col } from "react-bootstrap"
-import AddStudent from '../component/Student/AddStudent';
+import ModalStudent from '../component/Student/ModalStudent';
 import { URL_API } from '../utils/constant'
 import swal from "sweetalert";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class student extends Component {
   constructor(props) {
@@ -73,29 +74,65 @@ class student extends Component {
   handleClose = () => this.setState({ show: false })
   handleShow = () => this.setState({ show: true })
 
-  deleteData = (e) => {
-    var id = e.target.id
-    {this.state.id}
-    axios.delete(URL_API+`student/`, id).then(res => {
-        
-        swal({
-            title: "Sukses hapus Student",
-            text: "Sukses hapus Student ",
-            icon: "success",
-            button: false,
-            timer: 1500,
-          });
-        }).catch((error) => {
-          console.log("Error yaa ", error);
-          console.log("dataUser");
-          swal({
-            title: "Gagal hapus Student",
-            text: "Gagal hapus Student",
-            icon: "danger",
-            button: false,
-            timer: 1500,
-          });
-        });
+  deleteData = (data) => {
+    axios.delete(URL_API + `student/${data}`).then((res) => {
+      this.getShowAPI();
+      swal({
+        title: "Sukses Delete Student",
+        text: "Sukses Delete Student " + data.name,
+        icon: "success",
+        button: false,
+        timer: 1500,
+      });
+    }).catch((error) => {
+      console.log("Error yaa ", error);
+      console.log("dataUser", data);
+      swal({
+        title: "Gagal Delete Major",
+        text: "Gagal Delete Major",
+        icon: "danger",
+        button: false,
+        timer: 1500,
+      });
+    });
+  }
+
+  findMajorById = (studentId) => {
+    axios.get(URL_API + `student/${studentId}`).then((res) => {
+      if (res.data != null) {
+        this.setState({ addStudent: res.data })
+      }
+    }).catch((error) => {
+      console.error("Error - " + error);
+    });
+
+  };
+
+  handleupdate = (data) => {
+    console.log(data);
+    axios.put(URL_API + `student/${data}`, this.state.addStudent).then((res) => {
+      this.getShowAPI();
+      swal({
+        title: "Sukses Update Student",
+        text: "Sukses Update Student " + this.state.addStudent.name,
+        icon: "success",
+        button: false,
+        timer: 1500,
+      });
+    }).catch((error) => {
+      console.log("Error yaa ", error);
+      console.log("dataUser", this.state.addStudent);
+      swal({
+        title: "Gagal Update Student",
+        text: "Gagal Update Student",
+        icon: "danger",
+        button: false,
+        timer: 1500,
+      });
+    });
+    this.setState({
+      show: false,
+    });
   }
 
   render() {
@@ -116,15 +153,26 @@ class student extends Component {
         <Row style={style.judul}>
           <Col xs={12} md={10}>
             <h2>List Student</h2>
+            {this.state.addStudent.major}
           </Col>
           <Col >
-            <Button variant="success" onClick={this.handleShow}>Add Student</Button>
-            <AddStudent
+            <Button variant="success" onClick={() => {
+                this.setState({show: true, addStudent: {
+                id: null,
+                name: null,
+                nim: null,
+                major: null
+              }
+            })}}> Add Student</Button>
+
+            <ModalStudent
               show={this.state.show}
               onHide={this.handleClose}
               major={this.state.majors}
+              student={this.state.addStudent}
               handlesubmit={this.handlesubmit}
-              handlechange={this.handlechange} />
+              handlechange={this.handlechange}
+              handleupdate={this.handleupdate} />
           </Col>
         </Row>
         <Table striped>
@@ -138,14 +186,17 @@ class student extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.students.map(student =>
+            {this.state.students.map((student,index) =>
               <tr key={student.id}>
-                <td>{student.id}</td>
+                <td>{index + 1}</td>
                 <td>{student.nim}</td>
                 <td>{student.name}</td>
                 <td>{student.major}</td>
-                <td><Button variant="warning" style={style.button_update}>Update</Button>
-                <Button variant="danger" id= {student.id} onClick={this.deleteData}>Delete</Button></td>
+                <td><Button variant="warning" style={style.button_update} onClick={()=>{
+                  this.setState({ show: true });
+                  this.findMajorById(student.id)
+                }}>Update</Button>
+                <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(student.id)} ><DeleteIcon /></Button></td>
               </tr>
             )}
           </tbody>

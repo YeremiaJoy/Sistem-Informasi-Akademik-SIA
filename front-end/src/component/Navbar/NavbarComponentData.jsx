@@ -10,7 +10,7 @@ export const NavbarData = [
         link: "/major"
     },
     {
-        id: 1,
+        id: 3,
         name: "Student",
         link: "/student"
     }

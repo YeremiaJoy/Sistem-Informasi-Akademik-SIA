@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import { Container, Table, Button, Row, Col} from 'react-bootstrap'
+import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 import ModalMajor from '../component/Major/ModalMajor'
 import { URL_API } from '../utils/constant'
 import swal from 'sweetalert'
@@ -38,7 +38,7 @@ class major extends Component {
   componentDidMount() {
     this.getShowAPI();
     const majorId = +this.props.match.params.id;
-    if(majorId){
+    if (majorId) {
       this.findMajorById(majorId);
     }
   }
@@ -95,20 +95,39 @@ class major extends Component {
 
   findMajorById = (majorId) => {
     axios.get(URL_API + `major/${majorId}`).then((res) => {
-      if(res.data != null){
+      if (res.data != null) {
         this.setState({ addMajor: res.data })
-      }     
-    }).catch((error)=> {
+      }
+    }).catch((error) => {
       console.error("Error - " + error);
     });
 
   };
-  
-  updateData = (data) => {
+
+  handleupdate = (data) => {
     console.log(data);
-    axios.put(URL_API + `major/${data}`,this.state.addMajor).then((res) => {
+    axios.put(URL_API + `major/${data}`, this.state.addMajor).then((res) => {
       this.getShowAPI();
-      
+      swal({
+        title: "Sukses Add Major",
+        text: "Sukses Add Major " + this.state.addMajor.major_name,
+        icon: "success",
+        button: false,
+        timer: 1500,
+      });
+    }).catch((error) => {
+      console.log("Error yaa ", error);
+      console.log("dataUser", this.state.addMajor);
+      swal({
+        title: "Gagal Add Major",
+        text: "Gagal Add Major",
+        icon: "danger",
+        button: false,
+        timer: 1500,
+      });
+    });
+    this.setState({
+      addMajorShow: false,
     });
   }
 
@@ -129,8 +148,7 @@ class major extends Component {
         marginBottom: "20px"
       }
     }
-    let addMajorCLose = () => this.setState({ addMajorShow: false });
-    let updateMajorClose = () => this.setState({ updateMajorShow: false });
+    let addMajorClose = () => this.setState({ addMajorShow: false });
 
     return (
       <Container style={style.container}>
@@ -139,16 +157,19 @@ class major extends Component {
             <h2>List Major</h2>
           </Col>
           <Col >
-            <Button variant="success" onClick={() => this.setState({ addMajorShow: true, addMajor: {
-              id: null,
-              code: null,
-              major_name: null
-            } })} >Add Major</Button>
+            <Button variant="success" onClick={() => this.setState({
+              addMajorShow: true, addMajor: {
+                id: null,
+                code: null,
+                major_name: null
+              }
+            })} >Add Major</Button>
             <ModalMajor
               show={this.state.addMajorShow}
-              onHide={addMajorCLose}
-              major={this.state.addMajor} 
-              handlechange={this.handlechange} handlesubmit={this.handlesubmit} />
+              onHide={addMajorClose}
+              major={this.state.addMajor}
+              handlechange={this.handlechange} handlesubmit={this.handlesubmit} handleupdate={this.handleupdate}
+            />
           </Col>
         </Row>
         <Table striped>
@@ -170,15 +191,9 @@ class major extends Component {
                 <td>
                   {/* <Link to={"edit/"+major.id} className="btn btn-sm btn-outline-primary">Update</Link> {' '} */}
                   <Button variant="warning" style={style.button_update} onClick={() => {
-                  this.setState({addMajorShow: true});
-                  this.findMajorById(major.id)
-                }}>Update </Button>
-                  <ModalMajor
-                    show={this.state.AddMajorShow}
-                    onHide={updateMajorClose}
-                    major={this.state.addMajor}
-                    updatedatamajor={this.updateData}
-                    />
+                    this.setState({ addMajorShow: true });
+                    this.findMajorById(major.id)
+                  }}>Update </Button>
                   <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(major.id)} ><DeleteIcon /></Button></td>
               </tr>
             )}
@@ -188,5 +203,4 @@ class major extends Component {
     )
   }
 }
-
 export default major;

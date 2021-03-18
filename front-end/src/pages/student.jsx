@@ -20,7 +20,10 @@ class student extends Component {
         nim: null,
         major: null
       }
-    }
+    };
+    this.handlechange = this.handlechange.bind(this);
+    this.handlesubmit = this.handlesubmit.bind(this);
+    this.handleupdate = this.handleupdate.bind(this);
   }
 
   getShowAPI = () => {
@@ -98,7 +101,7 @@ class student extends Component {
     });
   }
 
-  findMajorById = (studentId) => {
+  findStudentById = (studentId) => {
     axios.get(URL_API + `student/${studentId}`).then((res) => {
       if (res.data != null) {
         this.setState({ addStudent: res.data })
@@ -129,9 +132,6 @@ class student extends Component {
         button: false,
         timer: 1500,
       });
-    });
-    this.setState({
-      show: false,
     });
   }
 
@@ -200,7 +200,7 @@ class student extends Component {
                 <td>{student.major}</td>
                 <td><Button variant="warning" style={style.button_update} onClick={()=>{
                   this.setState({ show: true });
-                  this.findMajorById(student.id)
+                  this.findStudentById(student.id)
                 }}>Update</Button>
                 <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(student.id)} ><DeleteIcon /></Button></td>
               </tr>

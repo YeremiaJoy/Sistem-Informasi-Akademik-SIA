@@ -17,7 +17,10 @@ class major extends Component {
         code: null,
         major_name: null
       }
-    }
+    };
+    this.handlechange = this.handlechange.bind(this);
+    this.handlesubmit = this.handlesubmit.bind(this);
+    this.handleupdate = this.handleupdate.bind(this);
   }
 
   getShowAPI = () => {

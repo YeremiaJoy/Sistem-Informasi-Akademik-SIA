@@ -15,7 +15,7 @@ const ModalStudent = (props) => {
         </Modal.Title>
       </Modal.Header>
 
-      <Form onSubmit={(e) => { props.student.id ? props.handleupdate(props.student.id) : props.handlesubmit(e) }}>
+      <Form onSubmit={props.handleSubmit}>
         <Modal.Body>
 
           <Form.Group controlId="formBasicNama">
@@ -39,7 +39,7 @@ const ModalStudent = (props) => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" type="submit">Submit</Button>
+          <Button variant="primary" type="submit">{props.student.id ? "Update" : "Add"}</Button>
           <Button variant="danger" onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Form>

@@ -11,19 +11,17 @@ class major extends Component {
     super(props);
     this.state = {
       addMajorShow: false,
-      isUpdate: false,
       majors: [], //database json fake api
       addMajor: { //add data baru
-        id: ' ',
-        code: ' ',
-        major_name: ' '
-      }
+        id: '',
+        code: '',
+        major_name: ''
+      },
+      isUpdate: false
     };
-    this.handlechange = this.handlechange.bind(this);
-    // this.handlesubmit = this.handlesubmit.bind(this);
-    this.handleupdate = this.handleupdate.bind(this);
-    this.postDataToAPI = this.postDataToAPI.bind(this);
-    this.putDataToAPI = this.putDataToAPI.bind(this);
+    // this.handlechange = this.handlechange.bind(this);
+    // this.postDataToAPI = this.postDataToAPI.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getShowAPI = () => {
@@ -33,20 +31,60 @@ class major extends Component {
   }
 
   handlechange = (event) => {
-    let addMajorNew = {...this.state.addMajor};
+    let addMajorNew = { ...this.state.addMajor };
     addMajorNew[event.target.name] = event.target.value;
+    let timestamp = new Date().getTime();
+    if(!this.state.isUpdate){
+      addMajorNew['id'] = timestamp;
+    }
     this.setState({
       addMajor: addMajorNew
     })
   }
 
-  componentDidMount() {
-    this.getShowAPI();
+  handleSubmit = (e) => {
+    if(this.state.isUpdate){
+      this.putDataToAPI(); 
+    }else{
+      this.postDataToAPI();
+    }
+    e.preventDefault();
+  }
+
+  putDataToAPI = () => {
+    axios.put(URL_API + `major/${this.state.addMajor.id}`,this.state.addMajor).then((res) => {
+      this.getShowAPI();
+      this.setState({
+        addMajorShow: false,
+        isUpdate: false,
+      })
+      swal({
+        title: "Sukses Update Major",
+        text: "Sukses Update Major " + this.state.addMajor.major_name,
+        icon: "success",
+        button: false,
+        timer: 1500,
+      });
+    }).catch((error) => {
+      console.log("Error yaa ", error);
+      console.log("dataUser", this.state.addMajor);
+      swal({
+        title: "Gagal Update Major",
+        text: "Gagal Update Major",
+        icon: "danger",
+        button: false,
+        timer: 1500,
+      });
+    });
   }
 
   postDataToAPI = () => {
     axios.post(URL_API + "major", this.state.addMajor).then((res) => {
+      console.log(res);
       this.getShowAPI();
+      this.setState({
+        addMajorShow: false
+      })
       swal({
         title: "Sukses Add Major",
         text: "Sukses Add Major " + this.state.addMajor.major_name,
@@ -65,18 +103,13 @@ class major extends Component {
         timer: 1500,
       });
     });
-    this.setState({
-      addMajorShow: false,
-      addMajor: {
-        id: ' ',
-        code: ' ',
-        major_name: ' '
-      }
-    })
+  }
+
+  componentDidMount() {
+    this.getShowAPI();
   }
 
   deleteData = (data) => {
-    this.findMajorById(data)
     axios.delete(URL_API + `major/${data}`).then((res) => {
       this.getShowAPI();
       swal({
@@ -97,57 +130,6 @@ class major extends Component {
         timer: 1500,
       });
     });
-  }
-
-  findMajorById = (majorId) => {
-    axios.get(URL_API + `major/${majorId}`).then((res) => {
-      if (res.data != null) {
-        this.setState({ addMajor: res.data })
-      }
-    }).catch((error) => {
-      console.error("Error - " + error);
-    });
-
-  };
-
-  handleupdate = (data) => {
-    console.log(data);
-    this.setState({
-      addMajor: data,
-      isUpdate: true
-    })
-  }
-
-  putDataToAPI = (e) => {
-    axios.put(URL_API + `major/${this.state.addMajor.id}`, this.state.addMajor).then((res) => {
-      this.getShowAPI();
-      swal({
-        title: "Sukses Update Major",
-        text: "Sukses Update Major " + this.state.addMajor.major_name,
-        icon: "success",
-        button: false,
-        timer: 1500,
-      });
-    }).catch((error) => {
-      console.log("Error yaa ", error);
-      console.log("dataUser", this.state.addMajor);
-      swal({
-        title: "Gagal Update Major",
-        text: "Gagal Update Major",
-        icon: "danger",
-        button: false,
-        timer: 1500,
-      });
-    });
-    this.setState({
-      addMajorShow: false,
-      isUpdate: false,
-      addMajor: {
-        id: '',
-        code: '',
-        major_name: ''
-      }
-    })
   }
 
   render() {
@@ -176,21 +158,22 @@ class major extends Component {
             <h2>List Major</h2>
           </Col>
           <Col >
-            <Button variant="success" onClick={() => this.setState({
-              addMajorShow: true,addMajor: {
-                id: '',
-                code: '',
-                major_name: ''
-              }
-            })} >Add Major</Button>
+            <Button variant="success" onClick={() =>
+              this.setState({
+                addMajorShow: true,
+                addMajor: {
+                  id: '',
+                  code: '',
+                  major_name: ''
+                }
+              })} >Add Major</Button>
+
             <ModalMajor
               show={this.state.addMajorShow}
               onHide={addMajorClose}
               major={this.state.addMajor}
               handlechange={this.handlechange}
-              // handlesubmit={this.handlesubmit}
-              postDataToAPI={this.postDataToAPI}
-              putDataToAPI={this.putDataToAPI}
+              handleSubmit={this.handleSubmit}
             />
           </Col>
         </Row>
@@ -204,7 +187,6 @@ class major extends Component {
             </tr>
           </thead>
           <tbody>
-
             {this.state.majors.map((major, index) =>
               <tr key={major.id} >
                 <td>{index + 1}</td>
@@ -213,14 +195,10 @@ class major extends Component {
                 <td>
                   <Button variant="warning" style={style.button_update} onClick={() => {
                     this.setState({
-                      addMajorShow: true,addMajor: {
-                        id: '',
-                        code: '',
-                        major_name: ''
-                      }
+                      addMajorShow: true, 
+                      isUpdate: true,
+                      addMajor: major
                     });
-                    // this.findMajorById(major.id)
-                    this.handleupdate(major);
                   }}>Update </Button>
                   <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(major.id)} ><DeleteIcon /></Button></td>
               </tr>

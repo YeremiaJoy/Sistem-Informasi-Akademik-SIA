@@ -15,7 +15,7 @@ const ModalMajor = (props) => {
         </Modal.Title>
       </Modal.Header>
       
-      <Form onSubmit={props.major.id ? props.putDataToAPI : props.postDataToAPI} >
+      <Form onSubmit={props.handleSubmit}>
         <Modal.Body>
           <Form.Group controlId="InputMajorCode">
             <Form.Label>Code Major</Form.Label>
@@ -29,7 +29,9 @@ const ModalMajor = (props) => {
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" type="submit">{props.major.id ? "Update" : "Submit"}</Button>
+          <Button variant="primary" type="submit"> 
+            {props.major.id ? "Update" : "Add"}
+          </Button>
           <Button variant="danger" onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Form>

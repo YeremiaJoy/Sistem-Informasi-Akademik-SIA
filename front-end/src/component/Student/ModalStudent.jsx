@@ -22,17 +22,17 @@ const ModalStudent = (props) => {
             <Form.Label>
               Nama Lengkap
             </Form.Label>          
-            <Form.Control type="name" name="name" value={props.student.id ? props.student.name : " "}placeholder="Masukkan Nama Lengkap" onChange={props.handlechange} autoComplete="off" required />
+            <Form.Control type="name" name="name" value={props.student.name}placeholder="Masukkan Nama Lengkap" onChange={props.handlechange} autoComplete="off" required />
           </Form.Group>
 
           <Form.Group controlId="formBasicNim">
             <Form.Label>NIM</Form.Label>
-            <Form.Control type="name" name="nim" value={props.student.id ? props.student.nim : " "} placeholder="NIM" onChange={props.handlechange} autoComplete="off" required />
+            <Form.Control type="name" name="nim" value={props.student.nim} placeholder="NIM" onChange={props.handlechange} autoComplete="off" required />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridMajor">
             <Form.Label>Major</Form.Label>
-            <Form.Control name="major" as="select" value={props.student.id ? props.student.major : " "} onChange={props.handlechange}>
+            <Form.Control name="major" as="select" value={props.student.major} onChange={props.handlechange}>
               {props.major.map(major => <option key={major.id}>{major.major_name}</option>)}
             </Form.Control>
           </Form.Group>

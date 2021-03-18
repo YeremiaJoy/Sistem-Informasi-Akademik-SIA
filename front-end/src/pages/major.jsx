@@ -11,16 +11,19 @@ class major extends Component {
     super(props);
     this.state = {
       addMajorShow: false,
+      isUpdate: false,
       majors: [], //database json fake api
       addMajor: { //add data baru
-        id: null,
-        code: null,
-        major_name: null
+        id: ' ',
+        code: ' ',
+        major_name: ' '
       }
     };
     this.handlechange = this.handlechange.bind(this);
     this.handlesubmit = this.handlesubmit.bind(this);
     this.handleupdate = this.handleupdate.bind(this);
+    this.postDatatoAPI = this.postDatatoAPI.bind(this);
+    this.putDataToAPI = this.putDataToAPI.bind(this);
   }
 
   getShowAPI = () => {
@@ -30,7 +33,7 @@ class major extends Component {
   }
 
   handlechange = (event) => {
-    let addMajorNew = { ...this.state.addMajor };
+    let addMajorNew = {...this.state.addMajor};
     addMajorNew[event.target.name] = event.target.value;
     this.setState({
       addMajor: addMajorNew
@@ -39,14 +42,17 @@ class major extends Component {
 
   componentDidMount() {
     this.getShowAPI();
-    const majorId = +this.props.match.params.id;
-    if (majorId) {
-      this.findMajorById(majorId);
+  }
+
+  handlesubmit = () => {
+    if (this.state.isUpdate){
+      this.putDataToAPI();
+    }else{
+      this.postDatatoAPI();
     }
   }
 
-  handlesubmit = (e) => {
-    e.preventDefault()
+  postDatatoAPI = () => {
     axios.post(URL_API + "major", this.state.addMajor).then((res) => {
       this.getShowAPI();
       swal({
@@ -69,15 +75,21 @@ class major extends Component {
     });
     this.setState({
       addMajorShow: false,
+      addMajor: {
+        id: ' ',
+        code: ' ',
+        major_name: ' '
+      }
     })
   }
 
   deleteData = (data) => {
+    this.findMajorById(data)
     axios.delete(URL_API + `major/${data}`).then((res) => {
       this.getShowAPI();
       swal({
         title: "Sukses Delete Major",
-        text: "Sukses Delete Major " + data.major_name,
+        text: "Sukses Delete Major " + this.state.addMajor.major_name,
         icon: "success",
         button: false,
         timer: 1500,
@@ -107,7 +119,15 @@ class major extends Component {
   };
 
   handleupdate = (data) => {
-    axios.put(URL_API + `major/${data}`, this.state.addMajor).then((res) => {
+    console.log(data);
+    this.setState({
+      addMajor: data,
+      isUpdate: true
+    })
+  }
+
+  putDataToAPI = (e) => {
+    axios.put(URL_API + `major/${this.state.addMajor.id}`, this.state.addMajor).then((res) => {
       this.getShowAPI();
       swal({
         title: "Sukses Update Major",
@@ -127,6 +147,15 @@ class major extends Component {
         timer: 1500,
       });
     });
+    this.setState({
+      addMajorShow: false,
+      isUpdate: false,
+      addMajor: {
+        id: '',
+        code: '',
+        major_name: ''
+      }
+    })
   }
 
   render() {
@@ -156,19 +185,18 @@ class major extends Component {
           </Col>
           <Col >
             <Button variant="success" onClick={() => this.setState({
-              addMajorShow: true, addMajor: {
-                id: null,
-                code: null,
-                major_name: null
+              addMajorShow: true,addMajor: {
+                id: '',
+                code: '',
+                major_name: ''
               }
             })} >Add Major</Button>
             <ModalMajor
               show={this.state.addMajorShow}
               onHide={addMajorClose}
               major={this.state.addMajor}
-              handlechange={this.handlechange} 
-              handlesubmit={this.handlesubmit} 
-              handleupdate={this.handleupdate}
+              handlechange={this.handlechange}
+              handlesubmit={this.handlesubmit}
             />
           </Col>
         </Row>
@@ -178,7 +206,7 @@ class major extends Component {
               <th>No</th>
               <th>Code</th>
               <th>Nama Major</th>
-              <th>Aksi</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -189,10 +217,16 @@ class major extends Component {
                 <td>{major.code}</td>
                 <td>{major.major_name}</td>
                 <td>
-                  {/* <Link to={"edit/"+major.id} className="btn btn-sm btn-outline-primary">Update</Link> {' '} */}
                   <Button variant="warning" style={style.button_update} onClick={() => {
-                    this.setState({ addMajorShow: true });
-                    this.findMajorById(major.id)
+                    this.setState({
+                      addMajorShow: true,addMajor: {
+                        id: '',
+                        code: '',
+                        major_name: ''
+                      }
+                    });
+                    // this.findMajorById(major.id)
+                    this.handleupdate(major);
                   }}>Update </Button>
                   <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(major.id)} ><DeleteIcon /></Button></td>
               </tr>

@@ -15,21 +15,21 @@ const ModalMajor = (props) => {
         </Modal.Title>
       </Modal.Header>
       
-      <Form onSubmit={(e) => {props.major.id ? props.handleupdate(props.major.id) : props.handlesubmit(e)}} >
+      <Form onSubmit={props.handlesubmit} >
         <Modal.Body>
           <Form.Group controlId="InputMajorCode">
             <Form.Label>Code Major</Form.Label>
-            <Form.Control type="name" name="code" value={props.major.id ? props.major.code : ""} placeholder="Input Code Major" autoComplete="off" required onChange={props.handlechange}/>
+            <Form.Control type="name" name="code" value={props.major.code} placeholder="Input Code Major" autoComplete="off" required onChange={props.handlechange}/>
           </Form.Group>
 
           <Form.Group controlId="InputMajorName">
             <Form.Label>Major Name</Form.Label>
-            <Form.Control type="text" name="major_name" value={props.major.id ? props.major.major_name : ""} placeholder="Input Major Name" autoComplete="off" required onChange={props.handlechange}/>
+            <Form.Control type="text" name="major_name" value={props.major.major_name} placeholder="Input Major Name" autoComplete="off" required onChange={props.handlechange}/>
           </Form.Group>
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" type="submit">Submit</Button>
+          <Button variant="primary" type="submit">{props.major.id ? "Update" : "Submit"}</Button>
           <Button variant="danger" onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Form>

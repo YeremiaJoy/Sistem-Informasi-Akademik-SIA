@@ -15,10 +15,10 @@ class student extends Component {
       majors: [],
       students: [],
       addStudent: {
-        id: null,
-        name: null,
-        nim: null,
-        major: null
+        id: ' ',
+        name: ' ',
+        nim: ' ',
+        major: ' '
       }
     };
     this.handlechange = this.handlechange.bind(this);
@@ -79,11 +79,12 @@ class student extends Component {
   handleShow = () => this.setState({ show: true })
 
   deleteData = (data) => {
+    this.findStudentById(data)
     axios.delete(URL_API + `student/${data}`).then((res) => {
       this.getShowAPI();
       swal({
         title: "Sukses Delete Student",
-        text: "Sukses Delete Student " + data.name,
+        text: "Sukses Delete Student " + this.state.addStudent.name,
         icon: "success",
         button: false,
         timer: 1500,
@@ -163,9 +164,9 @@ class student extends Component {
           })}
             <Button variant="success" onClick={() => {
                 this.setState({show: true, addStudent: {
-                id: null,
-                name: null,
-                nim: null,
+                id: ' ',
+                name: ' ',
+                nim: ' ',
                 major: this.state.value
                 }})
                 }}              
@@ -188,7 +189,7 @@ class student extends Component {
               <th>Nim</th>
               <th>Nama</th>
               <th>Jurusan</th>
-              <th>Aksi</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -202,7 +203,9 @@ class student extends Component {
                   this.setState({ show: true });
                   this.findStudentById(student.id)
                 }}>Update</Button>
-                <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(student.id)} ><DeleteIcon /></Button></td>
+                <Button variant="danger" style={style.button_delete} onClick={() =>  
+                  this.deleteData(student.id) }><DeleteIcon />
+                </Button></td>
               </tr>
             )}
           </tbody>

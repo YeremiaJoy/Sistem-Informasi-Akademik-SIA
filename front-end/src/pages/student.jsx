@@ -164,9 +164,9 @@ class student extends Component {
           })}
             <Button variant="success" onClick={() => {
                 this.setState({show: true, addStudent: {
-                id: ' ',
-                name: ' ',
-                nim: ' ',
+                id: '',
+                name: '',
+                nim: '',
                 major: this.state.value
                 }})
                 }}              

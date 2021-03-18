@@ -15,7 +15,7 @@ const ModalMajor = (props) => {
         </Modal.Title>
       </Modal.Header>
       
-      <Form onSubmit={props.handlesubmit} >
+      <Form onSubmit={props.major.id ? props.putDataToAPI : props.postDataToAPI} >
         <Modal.Body>
           <Form.Group controlId="InputMajorCode">
             <Form.Label>Code Major</Form.Label>

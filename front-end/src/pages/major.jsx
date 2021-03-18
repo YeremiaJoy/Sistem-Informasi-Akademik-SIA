@@ -20,9 +20,9 @@ class major extends Component {
       }
     };
     this.handlechange = this.handlechange.bind(this);
-    this.handlesubmit = this.handlesubmit.bind(this);
+    // this.handlesubmit = this.handlesubmit.bind(this);
     this.handleupdate = this.handleupdate.bind(this);
-    this.postDatatoAPI = this.postDatatoAPI.bind(this);
+    this.postDataToAPI = this.postDataToAPI.bind(this);
     this.putDataToAPI = this.putDataToAPI.bind(this);
   }
 
@@ -44,15 +44,7 @@ class major extends Component {
     this.getShowAPI();
   }
 
-  handlesubmit = () => {
-    if (this.state.isUpdate){
-      this.putDataToAPI();
-    }else{
-      this.postDatatoAPI();
-    }
-  }
-
-  postDatatoAPI = () => {
+  postDataToAPI = () => {
     axios.post(URL_API + "major", this.state.addMajor).then((res) => {
       this.getShowAPI();
       swal({
@@ -196,7 +188,9 @@ class major extends Component {
               onHide={addMajorClose}
               major={this.state.addMajor}
               handlechange={this.handlechange}
-              handlesubmit={this.handlesubmit}
+              // handlesubmit={this.handlesubmit}
+              postDataToAPI={this.postDataToAPI}
+              putDataToAPI={this.putDataToAPI}
             />
           </Col>
         </Row>

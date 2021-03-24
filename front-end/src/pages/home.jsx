@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import { Card, Button, Tabs, Tab, Container } from 'react-bootstrap';
+import NavbarComponent from "../component/Navbar/NavbarComponent";
 
 class home extends Component {
   render() {
     const style = {
       tab: {
         marginTop: "2%"
+      },
+      container: {
+        padding: '0px'
       }
     }
     return (
-      <Container fluid>
+      <Container fluid style={style.container}>        
+          <NavbarComponent />
+          <Container>        
         <Tabs defaultActiveKey="Major" id="uncontrolled-tab-example" style={style.tab}>
           <Tab eventKey="Major" title="Major">
             <Card.Body href="#major">
@@ -32,6 +38,7 @@ class home extends Component {
           </Tab>
           
         </Tabs>
+        </Container>
       </Container>
     )
   }

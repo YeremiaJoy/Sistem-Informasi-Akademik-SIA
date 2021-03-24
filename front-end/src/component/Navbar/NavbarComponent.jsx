@@ -3,7 +3,6 @@ import { Navbar, Nav } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import { NavbarData } from '../Navbar/NavbarComponentData'
 import "./NavbarComponent.css"
-import Login from "../Login/Login"
 
 class NavbarComponent extends Component {
    constructor(props) {
@@ -32,14 +31,16 @@ class NavbarComponent extends Component {
                )
                }
                <div className="batas"></div>
-               <Link className="login" onClick={() => this.setState({
+               <Link to="/signin" className="login">Login</Link>
+
+               {/* onClick={() => this.setState({
                   LoginShow: true
-               })}>Login</Link>
-               <Login 
+               })} */}
+               {/* <Login 
                show={this.state.LoginShow}
                onHide={loginClose}
-               />
-               <Link to="/register" className="register">Register</Link>
+               /> */}
+               <Link to="/signup" className="register">Register</Link>
             </Nav>
          </Navbar>
       );

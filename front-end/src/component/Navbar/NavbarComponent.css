@@ -1,0 +1,53 @@
+.activeStyle {
+    text-decoration: none;
+    color: #ffffff;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.activeStyle:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.navitem {
+    text-decoration: none;
+    color: #737373;
+    font-weight: bold;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.navitem:hover{
+    text-decoration: none;
+    color: grey;
+    opacity: 50%;
+}
+
+.login {
+    width: 47%;
+    height: 26px;
+    padding: 2px 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    font-size: 13px;
+    background: #2f2f2f;          
+    color: white;
+    cursor: pointer;
+    border: 1px solid white;
+    text-decoration: none;
+}
+.login:hover {
+    text-decoration: none;
+    background: #ffffff;
+    color: #2f2f2f;
+    transition: 0.5s ease;
+}
+
+.batas {
+    width: 1.2px;
+    min-Width: 1.2px;
+    height: 24px;
+    background: rgb(128, 128, 128);
+    margin: 0px 16px 0px 16px;
+}

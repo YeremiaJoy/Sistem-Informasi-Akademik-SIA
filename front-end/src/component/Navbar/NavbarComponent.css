@@ -1,6 +1,7 @@
 .activeStyle {
     text-decoration: none;
     color: #ffffff;
+    font-weight: bold;
     padding-right: 5px;
     padding-left: 5px;
 }
@@ -38,6 +39,27 @@
     text-decoration: none;
 }
 .login:hover {
+    text-decoration: none;
+    background: #ffffff;
+    color: #2f2f2f;
+    transition: 0.5s ease;
+}
+
+.register {
+    width: 47%;
+    height: 26px;
+    padding: 2px 16px;
+    margin-left: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    font-size: 13px;
+    background: #2f2f2f;          
+    color: white;
+    cursor: pointer;
+    border: 1px solid white;
+    text-decoration: none;
+}
+.register:hover {
     text-decoration: none;
     background: #ffffff;
     color: #2f2f2f;

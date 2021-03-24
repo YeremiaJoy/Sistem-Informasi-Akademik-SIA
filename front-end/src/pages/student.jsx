@@ -37,9 +37,9 @@ class student extends Component {
   handlechange = (event) => {
     let addStudentNew = { ...this.state.addStudent };
     addStudentNew[event.target.name] = event.target.value;
-    let timestamp = new Date().getTime();
+    // let timestamp = new Date().getTime();
     if(!this.state.isUpdate){
-      addStudentNew['id'] = timestamp;
+      addStudentNew['id'] = '';
     }
     this.setState({
       addStudent: addStudentNew

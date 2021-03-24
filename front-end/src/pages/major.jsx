@@ -19,9 +19,6 @@ class major extends Component {
       },
       isUpdate: false
     };
-    // this.handlechange = this.handlechange.bind(this);
-    // this.postDataToAPI = this.postDataToAPI.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getShowAPI = () => {
@@ -33,9 +30,9 @@ class major extends Component {
   handlechange = (event) => {
     let addMajorNew = { ...this.state.addMajor };
     addMajorNew[event.target.name] = event.target.value;
-    let timestamp = new Date().getTime();
+    // let timestamp = new Date().getTime();
     if(!this.state.isUpdate){
-      addMajorNew['id'] = timestamp;
+      addMajorNew['id'] = '';
     }
     this.setState({
       addMajor: addMajorNew

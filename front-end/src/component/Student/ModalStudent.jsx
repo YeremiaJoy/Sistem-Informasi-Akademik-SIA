@@ -22,7 +22,7 @@ const ModalStudent = (props) => {
             <Form.Label>
               Nama Lengkap
             </Form.Label>          
-            <Form.Control type="name" name="name" value={props.student.name}placeholder="Masukkan Nama Lengkap" onChange={props.handlechange} autoComplete="off" required />
+            <Form.Control type="name" name="name" value={props.student.name} placeholder="Masukkan Nama Lengkap" onChange={props.handlechange} autoComplete="off" required />
           </Form.Group>
 
           <Form.Group controlId="formBasicNim">

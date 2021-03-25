@@ -12,9 +12,9 @@ class NavbarComponent extends Component {
        }
    }
    render() {
-      let loginClose = () => this.setState({ LoginShow: false });
+      // let loginClose = () => this.setState({ LoginShow: false });
       return (
-         <Navbar bg="dark" variant="dark" >
+         <Navbar bg="dark" variant="dark" style={{fontFamily: 'sans-serif', fontSize: '0.875rem', lineHeight: '1.5rem', letterSpacing: 0}}>
             <Navbar.Brand href="/">Sistem Informasi Akademik</Navbar.Brand>
             <Nav>
                {NavbarData.map((val, key) => {
@@ -31,8 +31,7 @@ class NavbarComponent extends Component {
                )
                }
                <div className="batas"></div>
-               <Link to="/signin" className="login">Login</Link>
-
+               <Link to="/signin" className="login">Profile</Link>
                {/* onClick={() => this.setState({
                   LoginShow: true
                })} */}
@@ -40,7 +39,6 @@ class NavbarComponent extends Component {
                show={this.state.LoginShow}
                onHide={loginClose}
                /> */}
-               <Link to="/signup" className="register">Register</Link>
             </Nav>
          </Navbar>
       );

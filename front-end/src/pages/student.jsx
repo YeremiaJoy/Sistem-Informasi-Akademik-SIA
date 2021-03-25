@@ -5,6 +5,7 @@ import ModalStudent from '../component/Student/ModalStudent';
 import { URL_API } from '../utils/constant'
 import swal from "sweetalert";
 import DeleteIcon from '@material-ui/icons/Delete';
+import NavbarComponent from "../component/Navbar/NavbarComponent";
 
 class student extends Component {
   constructor(props) {
@@ -145,7 +146,8 @@ class student extends Component {
         marginRight: "10px"
       },
       container: {
-        marginTop: "70px"
+        marginTop: "70px",
+        fontFamily: "sans-serif"
       },
       judul: {
         marginBottom: "20px"
@@ -153,6 +155,8 @@ class student extends Component {
     }
 
     return (
+      <>
+      <NavbarComponent/>
       <Container style={style.container}>
         <Row style={style.judul}>
           <Col xs={12} md={10}>
@@ -212,6 +216,7 @@ class student extends Component {
           </tbody>
         </Table>
       </Container>
+      </>
     )
   }
 }

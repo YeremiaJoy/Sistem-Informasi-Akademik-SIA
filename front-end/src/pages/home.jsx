@@ -13,9 +13,9 @@ class home extends Component {
       }
     }
     return (
-      <Container fluid style={style.container}>        
-          <NavbarComponent />
-          <Container>        
+      <>
+      <NavbarComponent/> 
+      <Container fluid style={style.container}>               
         <Tabs defaultActiveKey="Major" id="uncontrolled-tab-example" style={style.tab}>
           <Tab eventKey="Major" title="Major">
             <Card.Body href="#major">
@@ -38,8 +38,8 @@ class home extends Component {
           </Tab>
           
         </Tabs>
-        </Container>
       </Container>
+      </>
     )
   }
 }

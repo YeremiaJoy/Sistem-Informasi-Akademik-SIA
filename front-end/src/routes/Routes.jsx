@@ -10,11 +10,17 @@ import AuthApi from "../utils/AuthApi"
 function Routes() {
     return (
         <Switch>
-            <RouteRegisteration path="/" exact component={home} />
-            <RouteProtected path="/major" exact component={major} />
-            <RouteProtected path="/student" exact component={student} />
-            <RouteRegisteration path="/signin" exact component={SignIn} />
-            <RouteRegisteration path="/signup" exact component={SignUp} />
+            {/* Dashboard */}
+            <RouteRegisteration exact path="/" component={home} />
+            <RouteProtected path="/major" component={major} />
+            <RouteProtected path="/student" component={student} />  
+
+            {/* Profile */}
+
+            {/* Auth */}
+            <RouteRegisteration path="/signin" component={SignIn} />
+            <RouteRegisteration path="/signup" component={SignUp} />
+            {/* <Route path="/signup" component={ForgotPassword} /> */}
         </Switch>
     );
 }

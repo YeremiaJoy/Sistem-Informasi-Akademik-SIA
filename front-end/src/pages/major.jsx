@@ -5,6 +5,7 @@ import ModalMajor from '../component/Major/ModalMajor'
 import { URL_API } from '../utils/constant'
 import swal from 'sweetalert'
 import DeleteIcon from '@material-ui/icons/Delete';
+import NavbarComponent from "../component/Navbar/NavbarComponent";
 
 class major extends Component {
   constructor(props) {
@@ -140,7 +141,8 @@ class major extends Component {
         paddingInline: "20px"
       },
       container: {
-        marginTop: "70px"
+        marginTop: "70px",
+        fontFamily: "sans-serif"
       },
       judul: {
         marginBottom: "20px"
@@ -149,6 +151,8 @@ class major extends Component {
     let addMajorClose = () => this.setState({ addMajorShow: false });
 
     return (
+      <>
+      <NavbarComponent/>
       <Container style={style.container}>
         <Row style={style.judul}>
           <Col xs={12} md={10}>
@@ -203,6 +207,7 @@ class major extends Component {
           </tbody>
         </Table>
       </Container>
+      </>
     )
   }
 }

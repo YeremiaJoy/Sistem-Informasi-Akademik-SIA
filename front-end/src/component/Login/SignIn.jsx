@@ -1,123 +1,119 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { Card, Form, Container, Row } from 'react-bootstrap';
+import {Link} from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 
 import AuthApi from "../../utils/AuthApi"
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <div>
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Sistem Informasi Akademik - Yeremia Joy
-      </Link>{' '}
+        Sistem Informasi Akademik
+      {' '}
       {new Date().getFullYear()}
       {'.'}
-    </Typography>
+    </div>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-
 export default function SignIn() {
-  const classes = useStyles();
+  const style = {
+    paper: {
+      marginTop: "13vh",
+    },
+    avatar: {
+      marginTop: '10px',
+      backgroundColor: 'blue',
+    },
+    SignInText: {
+
+    }
+  }
+  const emailRef = useRef()
+  const passwordRef = useRef()
   const authApi = React.useContext(AuthApi);
-  const handleSignIn = () =>{
-      authApi.setAuth(true);
+  const handleSignIn = () => {
+    authApi.setAuth(true);
   }
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography>
-          Sign in
-        </Typography>
-        <form className={classes.form}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handleSignIn}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
+    <>
+      <Container className="d-flex align-item-center justify-content-center" style={{ minHeight: "100vh" }}>
+        <div className="w-100" style={{ maxWidth: '400px' }}>
+          <Card style={style.paper}>
+
+            <Card.Header >
+              <Container >
+                <Row className="align-item-center justify-content-center">
+                  <Avatar style={style.avatar}>
+                    <LockOutlinedIcon />
+                  </Avatar>
+                </Row>
+                <Row className="align-item-center justify-content-center">
+                  <h2 className="text-center">Sign In</h2>
+                </Row>
+              </Container>
+            </Card.Header>
+
+            <Card.Body>
+              <Form>
+                <Form.Group id="email">
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                  />
+                </Form.Group>
+                <Form.Group id="password">
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                </Form.Group>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSignIn}
+                >
+                  Sign In
+            </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+          <div className="w-100 d-flex justify-content-end mt-2">      
+              <Link href="#"  >
                 Forgot password?
               </Link>
-            </Grid>
-            <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
-  );
+          </div>
+
+          <div className="w-100 d-flex justify-content-end mb-2">
+          Don't have an account?        
+          <Link to="/signup">Sign Up</Link>
+          </div>
+
+          <div className="d-flex justify-content-center mb-2">
+            <Copyright />            
+          </div>
+        </div>
+      </Container>
+    </>
+  )
 }

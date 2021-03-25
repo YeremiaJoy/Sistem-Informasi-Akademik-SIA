@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from './routes/Routes'
 import AuthApi from "./utils/AuthApi"
 

@@ -203,7 +203,8 @@ class major extends Component {
                       addMajor: major
                     });
                   }}>Update </Button>
-                  <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(major.id)} ><DeleteIcon /></Button></td>
+                  {/* <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(major.id)} ><DeleteIcon /></Button> */}
+                  </td>
               </tr>
             )}
           </tbody>

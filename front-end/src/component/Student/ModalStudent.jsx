@@ -34,7 +34,7 @@ const ModalStudent = (props) => {
           <Form.Group as={Col} controlId="formGridMajor">
             <Form.Label>Major</Form.Label>
             <Form.Control name="major" as="select" value={props.student.major} onChange={props.handlechange}>
-              {props.major.map(major => <option key={major.id}>{major.major_name}</option>)}
+              {props.major.map(major => <option key= {major.id} value={major.id}>{major.code} - {major.name}</option>)}
             </Form.Control>
           </Form.Group>
         </Modal.Body>

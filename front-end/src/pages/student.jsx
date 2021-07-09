@@ -26,11 +26,11 @@ class student extends Component {
   }
 
   getShowAPI = () => {
-    axios.get(URL_API + "major").then((res) => {
+    axios.get(URL_API + "findAllMajor").then((res) => {
       this.setState({ majors: res.data })
     })
 
-    axios.get(URL_API + "student").then((res) => {
+    axios.get(URL_API + "findAllStudent").then((res) => {
       this.setState({ students: res.data })
     })
   }
@@ -61,7 +61,7 @@ class student extends Component {
   }
 
   putDataToAPI = () => {
-    axios.put(URL_API + `student/${this.state.addStudent.id}`, this.state.addStudent).then((res) => {
+    axios.post(URL_API + `updateStudent/${this.state.addStudent.id}`, this.state.addStudent).then((res) => {
       this.getShowAPI();
       this.setState({
         show: false,
@@ -80,7 +80,7 @@ class student extends Component {
       swal({
         title: "Gagal Update Student",
         text: "Gagal Update Student",
-        icon: "danger",
+        icon: "error",
         button: false,
         timer: 1500,
       });
@@ -88,7 +88,7 @@ class student extends Component {
   }
 
   postDataToAPI = () => {
-    axios.post(URL_API + "student", this.state.addStudent).then((res) => {
+    axios.post(URL_API + "addStudent", this.state.addStudent).then((res) => {
       this.getShowAPI();
       this.setState({
         show: false
@@ -106,7 +106,7 @@ class student extends Component {
       swal({
         title: "Gagal Add Student",
         text: "Gagal Add Student",
-        icon: "danger",
+        icon: "error",
         button: false,
         timer: 1500,
       });
@@ -117,7 +117,7 @@ class student extends Component {
   handleShow = () => this.setState({ show: true })
 
   deleteData = (data) => {
-    axios.delete(URL_API + `student/${data}`).then((res) => {
+    axios.delete(URL_API + `deleteStudent/${data}`).then((res) => {
       this.getShowAPI();
       swal({
         title: "Sukses Delete Student",
@@ -132,7 +132,7 @@ class student extends Component {
       swal({
         title: "Gagal Delete Major",
         text: "Gagal Delete Major",
-        icon: "danger",
+        icon: "error",
         button: false,
         timer: 1500,
       });
@@ -163,9 +163,13 @@ class student extends Component {
             <h2>List Student</h2>
           </Col>
           <Col >
-          {this.state.majors.slice(0,1).map((major,index) => {
+          {
+          // eslint-disable-next-line
+          this.state.majors.slice(0,1).map((major,index) => {
+            // eslint-disable-next-line
             if(index==0){
-              this.state.value = major.major_name 
+              // eslint-disable-next-line
+              this.state.value = "1"
             }
           })}
             <Button variant="success" onClick={() => 
@@ -203,7 +207,11 @@ class student extends Component {
                 <td>{index + 1}</td>
                 <td>{student.nim}</td>
                 <td>{student.name}</td>
-                <td>{student.major}</td>
+                {this.state.majors.map((major) => 
+                  major.id === student.major.id ? (
+                    <td>{major.name}</td>
+                  ) : ("")
+                )}
                 <td><Button variant="warning" style={style.button_update} onClick={()=>{
                   this.setState({ show: true, isUpdate:true, addStudent: student});
                 }}>Update</Button>

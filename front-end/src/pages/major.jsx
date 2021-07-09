@@ -16,14 +16,14 @@ class major extends Component {
       addMajor: { //add data baru
         id: '',
         code: '',
-        major_name: ''
+        name: ''
       },
       isUpdate: false
     };
   }
 
   getShowAPI = () => {
-    axios.get(URL_API + "major").then((res) => {
+    axios.get(URL_API + "findAllMajor").then((res) => {
       this.setState({ majors: res.data })
     })
   }
@@ -50,7 +50,9 @@ class major extends Component {
   }
 
   putDataToAPI = () => {
-    axios.put(URL_API + `major/${this.state.addMajor.id}`,this.state.addMajor).then((res) => {
+    console.log(this.state.addMajor.id)
+    console.log(this.state.addMajor)
+    axios.post(URL_API + `updateMajor/${this.state.addMajor.id}`,this.state.addMajor).then((res) => {
       this.getShowAPI();
       this.setState({
         addMajorShow: false,
@@ -58,7 +60,7 @@ class major extends Component {
       })
       swal({
         title: "Sukses Update Major",
-        text: "Sukses Update Major " + this.state.addMajor.major_name,
+        text: "Sukses Update Major " + this.state.addMajor.name,
         icon: "success",
         button: false,
         timer: 1500,
@@ -69,7 +71,7 @@ class major extends Component {
       swal({
         title: "Gagal Update Major",
         text: "Gagal Update Major",
-        icon: "danger",
+        icon: "error",
         button: false,
         timer: 1500,
       });
@@ -77,7 +79,7 @@ class major extends Component {
   }
 
   postDataToAPI = () => {
-    axios.post(URL_API + "major", this.state.addMajor).then((res) => {
+    axios.post(URL_API + "addMajor", this.state.addMajor).then((res) => {
       console.log(res);
       this.getShowAPI();
       this.setState({
@@ -85,7 +87,7 @@ class major extends Component {
       })
       swal({
         title: "Sukses Add Major",
-        text: "Sukses Add Major " + this.state.addMajor.major_name,
+        text: "Sukses Add Major " + this.state.addMajor.name,
         icon: "success",
         button: false,
         timer: 1500,
@@ -96,7 +98,7 @@ class major extends Component {
       swal({
         title: "Gagal Add Major",
         text: "Gagal Add Major",
-        icon: "danger",
+        icon: "error",
         button: false,
         timer: 1500,
       });
@@ -192,7 +194,7 @@ class major extends Component {
               <tr key={major.id} >
                 <td>{index + 1}</td>
                 <td>{major.code}</td>
-                <td>{major.major_name}</td>
+                <td>{major.name}</td>
                 <td>
                   <Button variant="warning" style={style.button_update} onClick={() => {
                     this.setState({

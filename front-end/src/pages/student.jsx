@@ -43,7 +43,7 @@ class student extends Component {
     // if(!this.state.isUpdate){
     //   addStudentNew['id'] = timestamp;
     // }
-    if(addStudentNew.major.id==0){
+    if(addStudentNew.major==undefined){
       swal({
         title: "Gagal Add Student",
         text: "Gagal Add Student",
@@ -72,6 +72,7 @@ class student extends Component {
 
   putDataToAPI = () => {
     axios.post(URL_API + `updateStudent/${this.state.addStudent.id}`, this.state.addStudent).then((res) => {
+      console.log("put data ", res);
       this.getShowAPI();
       this.setState({
         show: false,
@@ -86,7 +87,7 @@ class student extends Component {
       });
     }).catch((error) => {
       console.log("Error yaa ", error);
-      console.log("dataUser", this.state.addStudent);
+      // console.log("dataUser", this.state.addStudent);
       swal({
         title: "Gagal Update Student",
         text: "Gagal Update Student",
@@ -112,7 +113,7 @@ class student extends Component {
       });
     }).catch((error) => {
       console.log("Error yaa ", error);
-      console.log("dataUser", this.state.addStudent);
+      // console.log("dataUser", this.state.addStudent);
       swal({
         title: "Gagal Add Student",
         text: "Gagal Add Student",
@@ -138,7 +139,7 @@ class student extends Component {
       });
     }).catch((error) => {
       console.log("Error yaa ", error);
-      console.log("dataUser", data);
+      // console.log("dataUser", data);
       swal({
         title: "Gagal Delete Major",
         text: "Gagal Delete Major",
@@ -187,8 +188,7 @@ class student extends Component {
                 id: '',
                 name: '',
                 nim: '',
-                major: ''
-                }
+                major: ''}
               })}                              
               > Add Student</Button>
 
@@ -221,8 +221,9 @@ class student extends Component {
                   major.id === student.major.id ? (
                     <td>{major.name}</td>
                     ) : ("")
-                  )} 
-                <td><Button variant="warning" style={style.button_update} onClick={()=>{
+                )} 
+                <td>
+                  <Button variant="warning" style={style.button_update} onClick={()=>{
                   this.setState({ 
                     show: true, 
                     isUpdate:true, 
@@ -230,14 +231,17 @@ class student extends Component {
                       id: student.id,
                       nim: student.nim,
                       name: student.name,
-                      major: ' ',
+                      major: student.major,
                     }
+                    
                   });
                 }}>Update</Button>
 
+
                 <Button variant="danger" style={style.button_delete} onClick={() =>  
                   this.deleteData(student.id) }><DeleteIcon />
-                </Button></td>
+                </Button>
+                </td>
               </tr>
             )}
           </tbody>

@@ -37,17 +37,13 @@ public class StudentService {
     }
 
     @Transactional
-    public void updateStudent(Long idStudent, Student student){
-//        Optional<Student> studentId = this.studentRepository.findById(idStudent);
-//        if (studentId.isPresent()) {
-//            student.setNim(student.getNim());
-//            student.setName(student.getName());
-//            student.setMajor(student.getMajor()); 
-//        }
-        Student s = this.studentRepository.findById(idStudent).orElseThrow(() -> new IllegalStateException("Student tidak ditemukan"));
-        s.setNim(student.getNim());
-        s.setName(student.getName());
-        s.setMajor(student.getMajor());
+    public void updateStudent(Long idStudent, String nim, String name, Long idMajor){
+        Student student = this.studentRepository.findById(idStudent).orElseThrow(() -> new IllegalStateException("Student tidak ditemukan"));
+        Major major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
+
+        student.setNim(nim);
+        student.setName(name);
+        student.setMajor(major);
     }
 
     public void removeStudent(Long idStudent){

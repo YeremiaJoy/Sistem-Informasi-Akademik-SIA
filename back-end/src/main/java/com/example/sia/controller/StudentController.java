@@ -26,8 +26,8 @@ public class StudentController {
     }
 
     @PostMapping(value = "/updateStudent/{idStudent}")
-    public void updateStudent(@PathVariable("idStudent") Long idStudent, @RequestBody final Student student){
-        this.studentService.updateStudent(idStudent, student);
+    public void updateStudent(@PathVariable("idStudent") Long idStudent, @RequestBody StudentDto studentDto){
+        this.studentService.updateStudent(idStudent, studentDto.getNim(), studentDto.getName(), studentDto.getIdMajor());
     }
 
     @DeleteMapping(value = "/deleteStudent/{idStudent}")

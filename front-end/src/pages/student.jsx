@@ -39,6 +39,7 @@ class student extends Component {
     let addStudentNew = { ...this.state.addStudent };
     addStudentNew[event.target.name] = event.target.value;
     // let timestamp = new Date().getTime();
+    // console.log(addStudentNew.major.name)
     if(!this.state.isUpdate){
       addStudentNew['id'] = '';
     }
@@ -206,12 +207,12 @@ class student extends Component {
               <tr key={student.id}>
                 <td>{index + 1}</td>
                 <td>{student.nim}</td>
-                <td>{student.name}</td>
+                <td>{student.name}</td>                
                 {this.state.majors.map((major) => 
                   major.id === student.major.id ? (
                     <td>{major.name}</td>
-                  ) : ("")
-                )}
+                    ) : ("")
+                  )} 
                 <td><Button variant="warning" style={style.button_update} onClick={()=>{
                   this.setState({ show: true, isUpdate:true, addStudent: student});
                 }}>Update</Button>

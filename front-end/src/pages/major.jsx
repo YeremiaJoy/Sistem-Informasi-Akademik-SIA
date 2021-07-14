@@ -30,11 +30,12 @@ class major extends Component {
 
   handlechange = (event) => {
     let addMajorNew = { ...this.state.addMajor };
-    addMajorNew[event.target.name] = event.target.value;
-    // let timestamp = new Date().getTime();
+    let timestamp = new Date().getTime();
     if(!this.state.isUpdate){
-      addMajorNew['id'] = '';
+      addMajorNew['id'] = timestamp;
     }
+    addMajorNew[event.target.name] = event.target.value;
+    console.log(addMajorNew)
     this.setState({
       addMajor: addMajorNew
     })
@@ -50,7 +51,6 @@ class major extends Component {
   }
 
   putDataToAPI = () => {
-    console.log(this.state.addMajor.id)
     console.log(this.state.addMajor)
     axios.post(URL_API + `updateMajor/${this.state.addMajor.id}`,this.state.addMajor).then((res) => {
       this.getShowAPI();
@@ -110,7 +110,7 @@ class major extends Component {
   }
 
   deleteData = (data) => {
-    axios.delete(URL_API + `major/${data}`).then((res) => {
+    axios.delete(URL_API + `deleteMajor/${data}`).then((res) => {
       this.getShowAPI();
       swal({
         title: "Sukses Delete Major",
@@ -121,7 +121,6 @@ class major extends Component {
       });
     }).catch((error) => {
       console.log("Error yaa ", error);
-      console.log("dataUser", data);
       swal({
         title: "Gagal Delete Major",
         text: "Gagal Delete Major",
@@ -203,7 +202,8 @@ class major extends Component {
                       addMajor: major
                     });
                   }}>Update </Button>
-                  {/* <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(major.id)} ><DeleteIcon /></Button> */}
+
+                  <Button variant="danger" style={style.button_delete} onClick={() => this.deleteData(major.id)} ><DeleteIcon /></Button>
                   </td>
               </tr>
             )}

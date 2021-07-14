@@ -30,4 +30,9 @@ public class MajorController {
         this.majorService.updateMajor(idMajor, editMajorDto.getCode(), editMajorDto.getName());
     }
 
+    @DeleteMapping(value = "/deleteMajor/{idMajor}")
+    public void deleteMajor(@PathVariable("idMajor") Long idMajor){
+        this.majorService.removeMajor(idMajor);
+    }
+
 }

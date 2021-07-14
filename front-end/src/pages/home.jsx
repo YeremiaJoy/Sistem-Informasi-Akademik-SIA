@@ -14,31 +14,31 @@ class home extends Component {
     }
     return (
       <>
-      <NavbarComponent/> 
-      <Container fluid style={style.container}>               
-        <Tabs defaultActiveKey="Major" id="uncontrolled-tab-example" style={style.tab}>
-          <Tab eventKey="Major" title="Major">
-            <Card.Body href="#major">
-              <Card.Title >Major </Card.Title>
-              <Card.Text>
-                Press the button to show any Major.  
+        <NavbarComponent />
+        <Container fluid style={style.container}>
+          <Tabs defaultActiveKey="Major" id="uncontrolled-tab-example" style={style.tab}>
+            <Tab eventKey="Major" title="Major">
+              <Card.Body href="#major">
+                <Card.Title >Major </Card.Title>
+                <Card.Text>
+                  Press the button to show any Major.
               </Card.Text>
-              <Button href="/major" variant="primary">Show Major ..</Button>
-            </Card.Body>
-          </Tab>
+                <Button href="/major" variant="primary">Show Major ..</Button>
+              </Card.Body>
+            </Tab>
 
-          <Tab eventKey="Student" title="Student">
-            <Card.Body>
-              <Card.Title >Student </Card.Title>
-              <Card.Text>
-                Press the button to show any Students.
+            <Tab eventKey="Student" title="Student">
+              <Card.Body>
+                <Card.Title >Student </Card.Title>
+                <Card.Text>
+                  Press the button to show any Students.
               </Card.Text>
-              <Button href="/student" variant="primary">Show Students ..</Button>
-            </Card.Body>
-          </Tab>
-          
-        </Tabs>
-      </Container>
+                <Button href="/student" variant="primary">Show Students ..</Button>
+              </Card.Body>
+            </Tab>
+
+          </Tabs>
+        </Container>
       </>
     )
   }

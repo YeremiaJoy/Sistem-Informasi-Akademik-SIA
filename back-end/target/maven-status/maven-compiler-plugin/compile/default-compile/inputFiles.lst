@@ -1,11 +1,11 @@
-E:\github\sia\back-end\src\main\java\com\example\sia\controller\StudentController.java
-E:\github\sia\back-end\src\main\java\com\example\sia\data\repository\StudentRepository.java
-E:\github\sia\back-end\src\main\java\com\example\sia\SiaApplication.java
-E:\github\sia\back-end\src\main\java\com\example\sia\controller\MajorController.java
-E:\github\sia\back-end\src\main\java\com\example\sia\data\dto\StudentDto.java
-E:\github\sia\back-end\src\main\java\com\example\sia\domain\entity\Student.java
-E:\github\sia\back-end\src\main\java\com\example\sia\application\service\MajorService.java
-E:\github\sia\back-end\src\main\java\com\example\sia\application\service\StudentService.java
-E:\github\sia\back-end\src\main\java\com\example\sia\domain\entity\Major.java
-E:\github\sia\back-end\src\main\java\com\example\sia\data\dto\EditMajorDto.java
-E:\github\sia\back-end\src\main\java\com\example\sia\data\repository\MajorRepository.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\data\repository\StudentRepository.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\data\repository\MajorRepository.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\data\dto\StudentDto.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\SiaApplication.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\domain\entity\Student.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\domain\entity\Major.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\controller\StudentController.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\application\service\MajorService.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\controller\MajorController.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\data\dto\EditMajorDto.java
+D:\BINUS\Start-Up Business (www.jasain.com)\Semester 7\Coba\Reactjs\sia\back-end\src\main\java\com\example\sia\application\service\StudentService.java

@@ -35,4 +35,9 @@ public class MajorService {
         major.setCode(code);
         major.setName(name);
     }
+    public void removeMajor(Long idMajor){
+        Major major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
+
+        majorRepository.deleteById(idMajor);
+    }
 }

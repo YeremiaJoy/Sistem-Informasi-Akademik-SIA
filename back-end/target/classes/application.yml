@@ -8,7 +8,7 @@ spring:
     serialization:
       fail-on-empty-beans: false
   datasource:
-    password: password
+    password: joy0401
     url: jdbc:postgresql://localhost:5432/sia_db
     username: postgres
   jpa:

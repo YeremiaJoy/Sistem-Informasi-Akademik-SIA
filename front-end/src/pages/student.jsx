@@ -16,6 +16,7 @@ class student extends Component {
       isUpdate: false,
       majors: [],
       students: [],
+      selectMajor: [],
       addStudent: {
         id: ' ',
         name: ' ',
@@ -52,6 +53,8 @@ class student extends Component {
         timer: 1500,
       });
     }
+
+
     this.setState({
       addStudent: addStudentNew
     })
@@ -59,11 +62,12 @@ class student extends Component {
 
   componentDidMount() {
     this.getShowAPI();
+    // this.getDataMajor();
   }
 
   handleSubmit = (e) => {
-    if(this.state.isUpdate){
-      this.putDataToAPI(); 
+    if(this.state.isUpdate){          
+      this.putDataToAPI();     
     }else{
       this.postDataToAPI();
     }
@@ -71,7 +75,7 @@ class student extends Component {
   }
 
   putDataToAPI = () => {
-    axios.post(URL_API + `updateStudent/${this.state.addStudent.id}`, this.state.addStudent).then((res) => {
+    axios.post(URL_API + `updateStudent/${this.state.addStudent.id}/`, this.state.addStudent).then((res) => {
       console.log("put data ", res);
       this.getShowAPI();
       this.setState({
@@ -188,7 +192,7 @@ class student extends Component {
                 id: '',
                 name: '',
                 nim: '',
-                major: ''}
+                major: '1'}
               })}                              
               > Add Student</Button>
 
@@ -226,12 +230,12 @@ class student extends Component {
                   <Button variant="warning" style={style.button_update} onClick={()=>{
                   this.setState({ 
                     show: true, 
-                    isUpdate:true, 
+                    isUpdate:true,                     
                     addStudent: {
                       id: student.id,
                       nim: student.nim,
                       name: student.name,
-                      major: student.major,
+                      major: student.major.id,
                     }
                     
                   });

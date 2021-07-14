@@ -3,6 +3,7 @@ import { Modal, Button, Form, Col } from "react-bootstrap"
 import major from '../../pages/major';
 
 const ModalStudent = (props) => {
+
   return (
     <Modal
       {...props}
@@ -35,12 +36,11 @@ const ModalStudent = (props) => {
           <Form.Group as={Col} controlId="formGridMajor">
             <Form.Label>Major</Form.Label>
             <Form.Control name="major" as="select" onChange={props.handlechange}>
-              <option value="0"> {props.student.major.id ? props.student.major.code + " | " + props.student.major.name : "-- Select Major --"} </option>
+              {/* <option value="0"> {props.student.major.id ? props.student.major.code + " | " + props.student.major.name : "-- Select Major --"} </option> */}
               {props.major.map(major =>
                 <option key={major.id} value={major.id}>
                   {major.code} | {major.name}
                 </option>)}
-
             </Form.Control>
           </Form.Group>
         </Modal.Body>

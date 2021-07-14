@@ -49,7 +49,7 @@ class major extends Component {
     }
     e.preventDefault();
   }
-
+  
   putDataToAPI = () => {
     console.log(this.state.addMajor)
     axios.post(URL_API + `updateMajor/${this.state.addMajor.id}`,this.state.addMajor).then((res) => {

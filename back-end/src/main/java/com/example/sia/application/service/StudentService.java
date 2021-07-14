@@ -42,7 +42,7 @@ public class StudentService {
 //        if (studentId.isPresent()) {
 //            student.setNim(student.getNim());
 //            student.setName(student.getName());
-//            student.setMajor(student.getMajor());
+//            student.setMajor(student.getMajor()); 
 //        }
         Student s = this.studentRepository.findById(idStudent).orElseThrow(() -> new IllegalStateException("Student tidak ditemukan"));
         s.setNim(student.getNim());

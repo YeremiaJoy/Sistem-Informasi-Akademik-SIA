@@ -30,10 +30,10 @@ class major extends Component {
 
   handlechange = (event) => {
     let addMajorNew = { ...this.state.addMajor };
-    let timestamp = new Date().getTime();
-    if(!this.state.isUpdate){
-      addMajorNew['id'] = timestamp;
-    }
+    // let timestamp = new Date().getTime();
+    // if(!this.state.isUpdate){
+    //   addMajorNew['id'] = timestamp;
+    // }
     addMajorNew[event.target.name] = event.target.value;
     console.log(addMajorNew)
     this.setState({
@@ -114,7 +114,7 @@ class major extends Component {
       this.getShowAPI();
       swal({
         title: "Sukses Delete Major",
-        text: "Sukses Delete Major " + this.state.addMajor.major_name,
+        text: "Sukses Delete Major " + this.state.addMajor.name,
         icon: "success",
         button: false,
         timer: 1500,

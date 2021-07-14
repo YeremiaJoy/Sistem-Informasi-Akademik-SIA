@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal, Button, Form, Col } from "react-bootstrap"
 
 const ModalStudent = (props) => {
@@ -8,7 +8,7 @@ const ModalStudent = (props) => {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      style={{fontFamily: 'sans-serif'}}
+      style={{ fontFamily: 'sans-serif' }}
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
@@ -22,7 +22,7 @@ const ModalStudent = (props) => {
           <Form.Group controlId="formBasicNama">
             <Form.Label>
               Nama Lengkap
-            </Form.Label>          
+            </Form.Label>
             <Form.Control type="name" name="name" value={props.student.name} placeholder="Masukkan Nama Lengkap" onChange={props.handlechange} autoComplete="off" required />
           </Form.Group>
 
@@ -33,8 +33,13 @@ const ModalStudent = (props) => {
 
           <Form.Group as={Col} controlId="formGridMajor">
             <Form.Label>Major</Form.Label>
-            <Form.Control name="major" as="select" value={props.student.major} onChange={props.handlechange}>
-              {props.major.map(major => <option key= {major.id} value={major.id}>{major.code} - {major.name}</option>)}
+            <Form.Control name="major" as="select" onChange={props.handlechange}>
+              <option value="0">-- Select Major --</option>
+              {props.major.map(major =>
+                <option key={major.id} value={major.id}>
+                  {major.code} - {major.name}
+                </option>)}
+
             </Form.Control>
           </Form.Group>
         </Modal.Body>

@@ -12,7 +12,7 @@ class student extends Component {
     super(props);
     this.state = {
       show: false,
-      value: null,
+      value: ' ',
       isUpdate: false,
       majors: [],
       students: [],
@@ -39,9 +39,18 @@ class student extends Component {
     let addStudentNew = { ...this.state.addStudent };
     addStudentNew[event.target.name] = event.target.value;
     // let timestamp = new Date().getTime();
-    // console.log(addStudentNew.major.name)
-    if(!this.state.isUpdate){
-      addStudentNew['id'] = '';
+    console.log(addStudentNew)
+    // if(!this.state.isUpdate){
+    //   addStudentNew['id'] = timestamp;
+    // }
+    if(addStudentNew.major.id==0){
+      swal({
+        title: "Gagal Add Student",
+        text: "Gagal Add Student",
+        icon: "error",
+        button: false,
+        timer: 1500,
+      });
     }
     this.setState({
       addStudent: addStudentNew
@@ -174,11 +183,11 @@ class student extends Component {
             }
           })}
             <Button variant="success" onClick={() => 
-                this.setState({show: true, addStudent: {
+                this.setState({show: true, isUpdate: false, addStudent: {
                 id: '',
                 name: '',
                 nim: '',
-                major: this.state.value
+                major: ''
                 }
               })}                              
               > Add Student</Button>
@@ -214,7 +223,16 @@ class student extends Component {
                     ) : ("")
                   )} 
                 <td><Button variant="warning" style={style.button_update} onClick={()=>{
-                  this.setState({ show: true, isUpdate:true, addStudent: student});
+                  this.setState({ 
+                    show: true, 
+                    isUpdate:true, 
+                    addStudent: {
+                      id: student.id,
+                      nim: student.nim,
+                      name: student.name,
+                      major: ' ',
+                    }
+                  });
                 }}>Update</Button>
 
                 <Button variant="danger" style={style.button_delete} onClick={() =>  

@@ -28,6 +28,12 @@ public class MajorService {
         return this.majorRepository.findAll();
     }
 
+    public Major getOneMajor(Long idMajor){
+        Major major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
+
+        return major;
+    }
+
     @Transactional
     public void updateMajor(Long idMajor, String code, String name){
         Major major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));

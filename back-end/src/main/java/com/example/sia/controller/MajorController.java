@@ -25,6 +25,11 @@ public class MajorController {
         return this.majorService.findAll();
     }
 
+    @GetMapping(value = "/getOneMajor/{idMajor}")
+    public Major getOne(@PathVariable("idMajor") Long idMajor){
+        return this.majorService.getOneMajor(idMajor);
+    }
+
     @PostMapping(value = "/updateMajor/{idMajor}")
     public void updateMajor(@PathVariable("idMajor") Long idMajor, @RequestBody EditMajorDto editMajorDto){
         this.majorService.updateMajor(idMajor, editMajorDto.getCode(), editMajorDto.getName());

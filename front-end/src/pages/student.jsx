@@ -48,6 +48,7 @@ class student extends Component {
     // if(!this.state.isUpdate){
     //   addStudentNew['id'] = timestamp;
     // }
+    // eslint-disable-next-line
     if(addStudentNew.major==undefined){
       swal({
         title: "Gagal Add Student",
@@ -79,7 +80,7 @@ class student extends Component {
   }
 
   putDataToAPI = () => {
-    axios.post(URL_API + `updateStudent/${this.state.addStudent.id}/`, this.state.addStudent).then((res) => {
+    axios.post(URL_API + `updateStudent/${this.state.addStudent.id}`, this.state.addStudent).then((res) => {
       console.log("put data ", res);
       this.getShowAPI();
       this.setState({

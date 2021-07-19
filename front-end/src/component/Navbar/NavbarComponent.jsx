@@ -21,6 +21,7 @@ class NavbarComponent extends Component {
                   return (
                      <Link
                         key={key} style={{ textDecoration: "none" }}
+                        // eslint-disable-next-line
                         to={val.link} className={window.location.pathname == val.link ? "activeStyle" : "navitem"}
                         onClick={() => { window.location.pathname = val.link; }}
                      >

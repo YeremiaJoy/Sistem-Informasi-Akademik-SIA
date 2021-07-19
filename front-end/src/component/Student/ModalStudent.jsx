@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Modal, Button, Form, Col } from "react-bootstrap"
-import major from '../../pages/major';
+// import major from '../../pages/major';
 
 const ModalStudent = (props) => {
 

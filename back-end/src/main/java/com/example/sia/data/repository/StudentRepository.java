@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long>, JpaSpecificationExecutor<Student> {
     Optional<Student> findByNim(String nim);
+    Optional<Student> findByNimAndPassword(String nim, String password);
 }

@@ -81,4 +81,10 @@ public class StudentService {
         }
         return generatedPassword;
     }
+
+    public Student login(String nim, String password){
+        student = studentRepository.findByNimAndPassword(nim, password).orElseThrow(() -> new IllegalStateException("Salah password / Nim"));
+
+        return student;
+    }
 }

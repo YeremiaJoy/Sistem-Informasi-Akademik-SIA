@@ -27,6 +27,10 @@ class student extends Component {
   }
 
   getShowAPI = () => {
+    axios.get(URL_API + "findAllMajorByStatus").then((res) => {
+      this.setState({ selectMajor: res.data })
+    })
+
     axios.get(URL_API + "findAllMajor").then((res) => {
       this.setState({ majors: res.data })
     })
@@ -199,7 +203,7 @@ class student extends Component {
             <ModalStudent
               show={this.state.show}
               onHide={this.handleClose}
-              major={this.state.majors}
+              major={this.state.selectMajor}
               student={this.state.addStudent}
               handleSubmit={this.handleSubmit}
               handlechange={this.handlechange} />

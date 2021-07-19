@@ -8,24 +8,23 @@ import javax.persistence.*;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "students")
-public class Student {
+@Table(name = "teachers")
+public class Teacher {
     @Id
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "students_id_seq",
+            name = "teacher_sequence",
+            sequenceName = "teachers_id_seq",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "students_id_seq"
+            generator = "teachers_id_seq"
     )
-    private long id;
-    private String nim;
+    private Long id;
     private String name;
+    @Column(columnDefinition = "varchar(255) default 'teacher123'", nullable = false)
+    private String password;
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Major major;
-    @Column(columnDefinition = "varchar(255) default 'sia123'", nullable = false)
-    private String password;
 }

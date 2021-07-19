@@ -1,6 +1,7 @@
 package com.example.sia.controller;
 
 import com.example.sia.application.service.StudentService;
+import com.example.sia.data.dto.EditStudentDto;
 import com.example.sia.data.dto.StudentDto;
 import com.example.sia.domain.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class StudentController {
     }
 
     @PostMapping(value = "/updateStudent/{idStudent}")
-    public void updateStudent(@PathVariable("idStudent") Long idStudent, @RequestBody StudentDto studentDto){
-        this.studentService.updateStudent(idStudent, studentDto.getNim(), studentDto.getName(), studentDto.getIdMajor());
+    public void updateStudent(@PathVariable("idStudent") Long idStudent, @RequestBody EditStudentDto editStudentDto){
+        this.studentService.updateStudent(idStudent, editStudentDto.getNim(), editStudentDto.getName(), editStudentDto.getIdMajor(), editStudentDto.getPassword());
     }
 
     @DeleteMapping(value = "/deleteStudent/{idStudent}")

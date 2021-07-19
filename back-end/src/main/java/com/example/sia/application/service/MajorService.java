@@ -14,6 +14,8 @@ public class MajorService {
     @Autowired
     private MajorRepository majorRepository;
 
+    private Major major;
+
     public Major addMajor(Major major){
         Optional<Major> majorCodeAndName = this.majorRepository.findByCodeAndName(major.getCode(),major.getName());
         if (majorCodeAndName.isPresent()){
@@ -24,26 +26,32 @@ public class MajorService {
         return major;
     }
 
-    public List<Major> findAll(){
+    public List<Major> findAllMajorByStatus(){
+        return this.majorRepository.findAllMajor(false);
+    }
+
+    public List<Major> findAllMajor(){
         return this.majorRepository.findAll();
     }
 
     public Major getOneMajor(Long idMajor){
-        Major major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
+        major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
 
         return major;
     }
 
     @Transactional
     public void updateMajor(Long idMajor, String code, String name){
-        Major major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
+        major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
 
         major.setCode(code);
         major.setName(name);
     }
-    public void removeMajor(Long idMajor){
-        Major major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
 
-        majorRepository.deleteById(idMajor);
+    @Transactional
+    public void deleteMajor(Long idMajor){
+        major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ada"));
+
+        major.setStatus_delete(true);
     }
 }

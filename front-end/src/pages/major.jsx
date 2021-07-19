@@ -23,7 +23,7 @@ class major extends Component {
   }
 
   getShowAPI = () => {
-    axios.get(URL_API + "findAllMajor").then((res) => {
+    axios.get(URL_API + "findAllMajorByStatus").then((res) => {
       this.setState({ majors: res.data })
     })
   }

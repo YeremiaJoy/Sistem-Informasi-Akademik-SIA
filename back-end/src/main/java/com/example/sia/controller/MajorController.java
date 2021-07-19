@@ -22,22 +22,24 @@ public class MajorController {
 
     @GetMapping(value = "/findAllMajor")
     public List<Major> findAllMajor (){
-        return this.majorService.findAll();
+        return this.majorService.findAllMajor();
     }
+
+    @GetMapping(value = "/findAllMajorByStatus")
+    public List<Major> findAllMajorByStatus() {return this.majorService.findAllMajorByStatus();}
 
     @GetMapping(value = "/getOneMajor/{idMajor}")
     public Major getOne(@PathVariable("idMajor") Long idMajor){
         return this.majorService.getOneMajor(idMajor);
     }
 
+    @DeleteMapping(value = "/deleteMajor/{idMajor}")
+    public void deleteMajor(@PathVariable("idMajor") Long idMajor){
+        this.majorService.deleteMajor(idMajor);
+    }
+
     @PostMapping(value = "/updateMajor/{idMajor}")
     public void updateMajor(@PathVariable("idMajor") Long idMajor, @RequestBody EditMajorDto editMajorDto){
         this.majorService.updateMajor(idMajor, editMajorDto.getCode(), editMajorDto.getName());
     }
-
-    @DeleteMapping(value = "/deleteMajor/{idMajor}")
-    public void deleteMajor(@PathVariable("idMajor") Long idMajor){
-        this.majorService.removeMajor(idMajor);
-    }
-
 }

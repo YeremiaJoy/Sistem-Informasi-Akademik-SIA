@@ -1,59 +1,56 @@
 package com.example.sia.application.service;
 
 import com.example.sia.data.repository.MajorRepository;
-import com.example.sia.data.repository.StudentRepository;
+import com.example.sia.data.repository.TeacherRepository;
 import com.example.sia.domain.entity.Major;
-import com.example.sia.domain.entity.Student;
+import com.example.sia.domain.entity.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.MessageDigest;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class StudentService {
+public class TeacherService {
+
     @Autowired
-    private StudentRepository studentRepository;
+    private TeacherRepository teacherRepository;
     @Autowired
     private MajorRepository majorRepository;
 
     private Major major;
-    private Student student;
+    private Teacher teacher;
 
-    public void addStudent(String nim, String name, long idMajor){
+    public List<Teacher> findAllTeacher(){
+        return this.teacherRepository.findAll();
+    }
+    public void addTeacher(String name, Long idMajor){
+        Teacher teacher = new Teacher();
         major = new Major();
         major = majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
 
-        student = new Student();
-        student.setNim(nim);
-        student.setName(name);
-        student.setMajor(major);
-        student.setPassword("sia123");
-        studentRepository.save(student);
+        teacher.setName(name);
+        teacher.setMajor(major);
+        teacher.setPassword("teacher123");
+        teacherRepository.save(teacher);
     }
 
-    public List<Student> findAll(){
-        return this.studentRepository.findAll();
+    public void deleteTeacher(Long idTeacher){
+        teacher = teacherRepository.findById(idTeacher).orElseThrow(() -> new IllegalStateException("Teacher tidak ada"));
+
+        teacherRepository.deleteById(idTeacher);
     }
 
     @Transactional
-    public void updateStudent(Long idStudent, String nim, String name, Long idMajor, String password){
+    public void updateTeacher(Long idTeacher, String name, Long idMajor, String password){
         String passMD5 = passwordToMD5(password);
-        Student student = this.studentRepository.findById(idStudent).orElseThrow(() -> new IllegalStateException("Student tidak ditemukan"));
-        Major major = this.majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
+        teacher = teacherRepository.findById(idTeacher).orElseThrow(() -> new IllegalStateException("Teacher tidak ada"));
 
-        student.setNim(nim);
-        student.setName(name);
-        student.setMajor(major);
-        student.setPassword(passMD5);
-    }
-
-    public void removeStudent(Long idStudent){
-        student = this.studentRepository.findById(idStudent).orElseThrow(() -> new IllegalStateException("Student tidak ditemukan"));
-
-        studentRepository.deleteById(idStudent);
+        major = majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
+        teacher.setName(name);
+        teacher.setMajor(major);
+        teacher.setPassword(passMD5);
     }
 
     public String passwordToMD5(String passwordToHash){

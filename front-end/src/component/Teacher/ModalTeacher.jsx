@@ -1,8 +1,7 @@
 import React from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
-// import major from '../../pages/major';
 
-const ModalStudent = (props) => {
+const ModalTeacher = (props) => {
   return (
     <Modal
       {...props}
@@ -13,7 +12,7 @@ const ModalStudent = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.student.id ? "Update Student" : "Add Student"}
+          {props.teacher.id ? "Update Teacher" : "Add Teacher"}
         </Modal.Title>
       </Modal.Header>
 
@@ -22,38 +21,23 @@ const ModalStudent = (props) => {
           <Form.Group controlId="formBasicNama">
             <Form.Label>Nama Lengkap</Form.Label>
             <Form.Control
-              type="name"
+              type="text"
               name="name"
-              value={props.student.name}
-              placeholder="Masukkan Nama Lengkap"
+              value={props.teacher.name}
+              placeholder="Masukkan Nama Lengkap Beserta Gelar"
               onChange={props.handlechange}
               autoComplete="off"
               required
             />
           </Form.Group>
-
-          <Form.Group controlId="formBasicNim">
-            <Form.Label>NIM</Form.Label>
-            <Form.Control
-              type="name"
-              name="nim"
-              value={props.student.nim}
-              placeholder="NIM"
-              onChange={props.handlechange}
-              autoComplete="off"
-              required
-            />
-          </Form.Group>
-
           <Form.Group as={Col} controlId="formGridMajor">
             <Form.Label>Major</Form.Label>
             <Form.Control
               name="major"
               as="select"
               onChange={props.handlechange}
-              value={props.student.major}
+              value={props.teacher.major}
             >
-              {/* <option value="0"> {props.student.major.id ? props.student.major.code + " | " + props.student.major.name : "-- Select Major --"} </option> */}
               {props.major.map((major) => (
                 <option key={major.id} value={major.id}>
                   {major.code} | {major.name}
@@ -61,13 +45,13 @@ const ModalStudent = (props) => {
               ))}
             </Form.Control>
           </Form.Group>
-          {props.student.id ? (
+          {props.teacher.id ? (
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="text"
                 name="password"
-                value={props.student.password}
+                value={props.teacher.password}
                 placeholder="Masukkan Password"
                 onChange={props.handlechange}
                 autoComplete="off"
@@ -77,18 +61,17 @@ const ModalStudent = (props) => {
           ) : (
             ""
           )}
+          <Modal.Footer>
+            <Button variant="primary" type="submit">
+              {props.teacher.id ? "Update" : "Add"}
+            </Button>
+            <Button variant="danger" onClick={props.onHide}>
+              Close
+            </Button>
+          </Modal.Footer>
         </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="primary" type="submit">
-            {props.student.id ? "Update" : "Add"}
-          </Button>
-          <Button variant="danger" onClick={props.onHide}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Form>
     </Modal>
   );
 };
-export default ModalStudent;
+export default ModalTeacher;

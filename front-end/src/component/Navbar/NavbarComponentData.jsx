@@ -13,5 +13,15 @@ export const NavbarData = [
         id: 3,
         name: "Student",
         link: "/student"
+    },
+    {
+        id: 4,
+        name: "Course",
+        link: "/course"
+    },
+    {
+        id: 5,
+        name: "Teacher",
+        link: "/teacher"
     }
 ]

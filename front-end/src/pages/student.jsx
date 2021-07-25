@@ -21,7 +21,8 @@ class student extends Component {
         id: ' ',
         name: ' ',
         nim: ' ',
-        major: ' '
+        major: ' ',
+        password: ' '
       }
     };
   }
@@ -241,6 +242,7 @@ class student extends Component {
                       nim: student.nim,
                       name: student.name,
                       major: student.major.id,
+                      password: student.password
                     }
                     
                   });

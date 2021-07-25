@@ -68,7 +68,6 @@ class student extends Component {
 
   componentDidMount() {
     this.getShowAPI();
-    // this.getDataMajor();
   }
 
   handleSubmit = (e) => {

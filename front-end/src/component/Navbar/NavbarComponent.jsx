@@ -15,7 +15,7 @@ class NavbarComponent extends Component {
       // let loginClose = () => this.setState({ LoginShow: false });
       return (
          <Navbar bg="dark" variant="dark" style={{fontFamily: 'sans-serif', fontSize: '0.875rem', lineHeight: '1.5rem', letterSpacing: 0}}>
-            <Navbar.Brand href="/">Sistem Informasi Akademik</Navbar.Brand>
+            <Navbar.Brand href="/" style={{paddingRight: '1rem', paddingLeft: '0.5rem' }}>SIA</Navbar.Brand>
             <Nav>
                {NavbarData.map((val, key) => {
                   return (

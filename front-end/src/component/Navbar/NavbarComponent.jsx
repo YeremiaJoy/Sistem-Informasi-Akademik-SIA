@@ -33,13 +33,6 @@ class NavbarComponent extends Component {
                }
                {/* <div className="batas"></div> */}
                {/* <Link to="/login" className="login">Login</Link> */}
-               {/* onClick={() => this.setState({
-                  LoginShow: true
-               })} */}
-               {/* <Login 
-               show={this.state.LoginShow}
-               onHide={loginClose}
-               /> */}
             </Nav>
          </Navbar>
       );

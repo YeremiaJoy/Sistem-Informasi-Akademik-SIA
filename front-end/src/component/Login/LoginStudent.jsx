@@ -24,18 +24,16 @@ function LoginStudent() {
             <div class="input-block email-block">
               <input type="text" required spellcheck="false" placeholder="nim" name="nim" id="login-email" />
               <i class="fas fa-user icon"></i>
-              <p class="helper-text">this is helper text</p>
             </div>
 
             {/* password field */}
             <div class="input-block password-block">
               <input type="password" required spellcheck="false" placeholder="password" name="password" id="login-password" />
               <i class="fas fa-key icon"></i>
-              <div class="hide-reveal-button">
+              {/* <div class="hide-reveal-button">
                 <ion-icon name="eye-outline" class="hide"></ion-icon>
                 <ion-icon name="eye-off-outline" class="reveal"></ion-icon>
-              </div>
-              <p class="helper-text">this is helper text</p>
+              </div> */}
             </div>
 
             <div class="submit">

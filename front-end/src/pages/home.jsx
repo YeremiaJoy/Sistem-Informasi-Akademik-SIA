@@ -28,16 +28,12 @@ class home extends Component {
               <Button
                 href="/loginStudent"
                 className="btns"
-                buttonStyle="btn--outline"
-                buttonSize="btn--large"
               >
                 Login as Student
               </Button>
               <Button
                 href="/loginTeacher"
                 className="btns"
-                buttonStyle="btn--primary"
-                buttonSize="btn--large"
               >
                 Login as Teacher
               </Button>

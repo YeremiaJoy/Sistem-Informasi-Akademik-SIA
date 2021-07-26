@@ -1,51 +1,53 @@
-// import React from "react"
-// import { Modal, Button, Form } from "react-bootstrap"
+import React from 'react'
+import './Login.scss'
 
-// const Login = (props) => {
-//    return (
-//       <Modal
-//          {...props}
-//          size="md"
-//          aria-labelledby="contained-modal-title-vcenter"
-//          centered
-//       >
-//          <Modal.Header closeButton>
-//             <Modal.Title id="contained-modal-title-vcenter">
-//                {/* {props.major.id ? "Register" : "Login"} */} Login
-//             </Modal.Title>
-//          </Modal.Header>
+function Login() {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
-//          <Form onSubmit={props.handleSubmit}>
-//             <Modal.Body>
-//                <Form.Group controlId="formBasicEmail">
-//                   <Form.Label>Username</Form.Label>
-//                   <Form.Control type="text" placeholder="Enter email" />
-//                   <Form.Text className="text-muted">
-//                      notes
-//                   </Form.Text>
-//                </Form.Group>
+  // function validateForm() {
+  //   return email.length > 0 && password.length > 0;
+  // }
 
-//                <Form.Group controlId="formBasicPassword">
-//                   <Form.Label>Password</Form.Label>
-//                   <Form.Control type="password" placeholder="Password" />
-//                </Form.Group>
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  // }
+  return (
+    <div className="Login">
+      <div class="container">
+        <div class="container--form container--login">
+          <form action="#" novalidate>
+            <h1>Log in</h1>
+            <p>Belum punya akun? <a href="/">Daftar</a></p>
 
-//                {/* <Form.Group controlId="InputMajorName">
-//                   <Form.Label>Major Name</Form.Label>
-//                   <Form.Control type="text" name="major_name" value={props.major.major_name} placeholder="Input Major Name" autoComplete="off" required onChange={props.handlechange} />
-//                </Form.Group> */}
-//             </Modal.Body>
+            {/* email field */}
+            <div class="input-block email-block">
+              <input type="text" required spellcheck="false" placeholder="username" name="email" id="login-email" />
+              <i class="fas fa-user icon"></i>
+              <p class="helper-text">this is helper text</p>
+            </div>
 
-//             <Modal.Footer>
-//                <Button variant="primary" type="submit">
-//                   {/* {props.major.id ? "Register" : "Login"} */} Login
-//                </Button>
-//                <Button variant="danger" onClick={props.onHide}>Close</Button>
-//             </Modal.Footer>
+            {/* password field */}
+            <div class="input-block password-block">
+              <input type="password" required spellcheck="false" placeholder="password" name="password" id="login-password" />
+              <i class="fas fa-key icon"></i>
+              <div class="hide-reveal-button">
+                <ion-icon name="eye-outline" class="hide"></ion-icon>
+                <ion-icon name="eye-off-outline" class="reveal"></ion-icon>
+              </div>
+              <p class="helper-text">this is helper text</p>
+            </div>
 
-//          </Form>
-//       </Modal>
-//    )
-// }
+            <div class="submit">
+              <div class="submit-button">Masuk</div>
+              <a href="#" class="submit-link">Lupa kata sandi?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className="footer-login">© 2021, Sistem Informasi Akademik create by Michael Septian & Yeremia Joy </div>
+    </div>
+  );
+}
 
-// export default Login;
+export default Login;

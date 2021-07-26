@@ -6,6 +6,7 @@ import major from "../pages/major";
 // import SignIn from "../component/Login/SignIn"
 import home from "../pages/home";
 import teacher from "../pages/teacher";
+import Course from "../pages/course";
 // import AuthApi from "../utils/AuthApi"
 
 function Routes() {
@@ -19,6 +20,7 @@ function Routes() {
       <Route exact path="/major" component={major}></Route>
       <Route exact path="/student" component={student}></Route>
       <Route exact path="/teacher" component={teacher}></Route>
+      <Route exact path="/course" component={Course}></Route>
 
       {/* Profile */}
 

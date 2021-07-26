@@ -10,13 +10,13 @@ class home extends Component {
       <>
         <NavbarComponent />
         <div className="hero-container">
-          <video src="/videos/video-1.mp4" autoPlay loop muted />
           <h1>Sistem Informasi Akademik</h1>
           <p>
             <span>by:</span> Michael Septian & Yeremia Joy
           </p>
           <div className="hero-btns">
             <Button
+              href="/loginStudent"
               className="btns"
               buttonStyle="btn--outline"
               buttonSize="btn--large"
@@ -24,6 +24,7 @@ class home extends Component {
               Login as Student
             </Button>
             <Button
+              href="/loginTeacher"
               className="btns"
               buttonStyle="btn--primary"
               buttonSize="btn--large"

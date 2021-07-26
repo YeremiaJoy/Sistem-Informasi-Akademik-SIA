@@ -1,7 +1,7 @@
 import React from 'react'
 import './Login.scss'
 
-function Login() {
+function LoginTeacher() {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
 
@@ -22,7 +22,7 @@ function Login() {
 
             {/* email field */}
             <div class="input-block email-block">
-              <input type="text" required spellcheck="false" placeholder="username" name="email" id="login-email" />
+              <input type="text" required spellcheck="false" placeholder="username" name="username" id="login-email" />
               <i class="fas fa-user icon"></i>
               <p class="helper-text">this is helper text</p>
             </div>
@@ -40,7 +40,7 @@ function Login() {
 
             <div class="submit">
               <div class="submit-button">Masuk</div>
-              <a href="#" class="submit-link">Lupa kata sandi?</a>
+              <a href="/" class="submit-link">Lupa kata sandi?</a>
             </div>
           </form>
         </div>
@@ -50,4 +50,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginTeacher;

@@ -6,11 +6,9 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class TeacherDto {
-    @JsonProperty("name")
-    private String name;
+public class LoginTeacherDto {
     @JsonProperty("username")
     private String username;
-    @JsonProperty("major")
-    private long idMajor;
+    @JsonProperty("password")
+    private String password;
 }

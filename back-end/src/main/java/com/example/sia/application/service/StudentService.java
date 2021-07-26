@@ -24,13 +24,14 @@ public class StudentService {
 
     public void addStudent(String nim, String name, long idMajor){
         major = new Major();
+        String passMD5 = passwordToMD5("sia123");
         major = majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
 
         student = new Student();
         student.setNim(nim);
         student.setName(name);
         student.setMajor(major);
-        student.setPassword("sia123");
+        student.setPassword(passMD5);
         studentRepository.save(student);
     }
 
@@ -83,7 +84,8 @@ public class StudentService {
     }
 
     public Student login(String nim, String password){
-        student = studentRepository.findByNimAndPassword(nim, password).orElseThrow(() -> new IllegalStateException("Salah password / Nim"));
+        String passMD5 = passwordToMD5(password);
+        student = studentRepository.findByNimAndPassword(nim, passMD5).orElseThrow(() -> new IllegalStateException("Salah password / Nim"));
 
         return student;
     }

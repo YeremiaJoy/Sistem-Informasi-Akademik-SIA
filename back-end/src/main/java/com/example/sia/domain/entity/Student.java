@@ -26,6 +26,6 @@ public class Student {
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Major major;
-    @Column(columnDefinition = "varchar(255) default 'sia123'", nullable = false)
+//    @Column(columnDefinition = "varchar(255) default 'sia123'", nullable = false)
     private String password;
 }

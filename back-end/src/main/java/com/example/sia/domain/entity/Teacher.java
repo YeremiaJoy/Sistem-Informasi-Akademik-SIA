@@ -22,7 +22,8 @@ public class Teacher {
     )
     private Long id;
     private String name;
-    @Column(columnDefinition = "varchar(255) default 'teacher123'", nullable = false)
+    private String username;
+//    @Column(columnDefinition = "varchar(255) default 'teacher123'", nullable = false)
     private String password;
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")

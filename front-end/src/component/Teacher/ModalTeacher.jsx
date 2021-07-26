@@ -30,6 +30,18 @@ const ModalTeacher = (props) => {
               required
             />
           </Form.Group>
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              name="username"
+              value={props.teacher.username}
+              placeholder="Masukkan Username"
+              onChange={props.handlechange}
+              autoComplete="off"
+              required
+            />
+          </Form.Group>
           <Form.Group as={Col} controlId="formGridMajor">
             <Form.Label>Major</Form.Label>
             <Form.Control

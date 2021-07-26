@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 public class EditTeacherDto {
     @JsonProperty("name")
     private String name;
+    @JsonProperty("username")
+    private String username;
     @JsonProperty("major")
     private Long idMajor;
     @JsonProperty("password")

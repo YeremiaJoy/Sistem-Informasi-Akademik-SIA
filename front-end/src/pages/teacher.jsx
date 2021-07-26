@@ -20,6 +20,7 @@ class teacher extends Component {
       Teacher: {
         id: " ",
         name: " ",
+        username: "",
         major: " ",
         password: " ",
       },
@@ -183,6 +184,7 @@ class teacher extends Component {
                     Teacher: {
                       id: "",
                       name: "",
+                      username: "",
                       major: "1",
                     },
                   })
@@ -229,6 +231,7 @@ class teacher extends Component {
                           Teacher: {
                             id: teacher.id,
                             name: teacher.name,
+                            username: teacher.username,
                             major: teacher.major.id,
                             password: teacher.password,
                           },

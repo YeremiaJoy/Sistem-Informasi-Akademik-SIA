@@ -1,5 +1,6 @@
 package com.example.sia.application.service;
 
+import com.example.sia.data.dto.LoginTeacherDto;
 import com.example.sia.data.repository.MajorRepository;
 import com.example.sia.data.repository.TeacherRepository;
 import com.example.sia.domain.entity.Major;
@@ -25,14 +26,16 @@ public class TeacherService {
     public List<Teacher> findAllTeacher(){
         return this.teacherRepository.findAll();
     }
-    public void addTeacher(String name, Long idMajor){
+    public void addTeacher(String name, String username, Long idMajor){
         Teacher teacher = new Teacher();
         major = new Major();
+        String passMD5 = passwordToMD5("teacher123");
         major = majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
 
         teacher.setName(name);
+        teacher.setUsername(username);
         teacher.setMajor(major);
-        teacher.setPassword("teacher123");
+        teacher.setPassword(passMD5);
         teacherRepository.save(teacher);
     }
 
@@ -43,12 +46,13 @@ public class TeacherService {
     }
 
     @Transactional
-    public void updateTeacher(Long idTeacher, String name, Long idMajor, String password){
+    public void updateTeacher(Long idTeacher, String name, String username, Long idMajor, String password){
         String passMD5 = passwordToMD5(password);
         teacher = teacherRepository.findById(idTeacher).orElseThrow(() -> new IllegalStateException("Teacher tidak ada"));
 
         major = majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
         teacher.setName(name);
+        teacher.setUsername(username);
         teacher.setMajor(major);
         teacher.setPassword(passMD5);
     }
@@ -77,5 +81,13 @@ public class TeacherService {
             e.printStackTrace();
         }
         return generatedPassword;
+    }
+
+    public Teacher login(LoginTeacherDto loginTeacherDto){
+        String passMD5 = passwordToMD5(loginTeacherDto.getPassword());
+
+        teacher = teacherRepository.findByUsernameAndPassword(loginTeacherDto.getUsername(), passMD5).orElseThrow(() -> new IllegalStateException("Username / password salah"));
+
+        return teacher;
     }
 }

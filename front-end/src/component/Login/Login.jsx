@@ -45,7 +45,7 @@ function Login() {
           </form>
         </div>
       </div>
-      <div className="footer-login">© 2021, Sistem Informasi Akademik create by Michael Septian & Yeremia Joy </div>
+      <div className="footer-login">© 2021, Sistem Informasi Akademik | create by Michael Septian & Yeremia Joy </div>
     </div>
   );
 }

@@ -56,6 +56,7 @@ class LoginTeacher extends Component {
         localStorage.setItem("password", res.data.password);
         localStorage.setItem("type", "teacher");
         this.props.history.push("/");
+        window.location.reload("/");
       })
       .catch((error) => {
         const errorMessage = JSON.parse(error.request.response);

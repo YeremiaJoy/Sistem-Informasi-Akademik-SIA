@@ -55,6 +55,7 @@ class LoginStudent extends Component {
         localStorage.setItem("major", res.data.major.name);
         localStorage.setItem("password", res.data.password);
         this.props.history.push("/");
+        window.location.reload("/");
       })
       .catch((error) => {
         const errorMessage = JSON.parse(error.request.response);

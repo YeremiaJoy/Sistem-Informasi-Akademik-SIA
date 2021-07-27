@@ -1,3 +1,6 @@
+:root {
+  --main: #fff;
+}
 .hero-container {
   background-color: rgb(102, 95, 95);
   height: 92.5vh;
@@ -37,8 +40,23 @@
   margin-top: 32px;
 }
 
-.hero-btns .btn {
-  margin: 6px;
+.hero-btns .btns:hover {
+  transition: all 0.3s ease-out;
+  color: #fff;
+  transition: 250ms;
+  border: 2px solid var(--main);
+  background-color: transparent;
+}
+.hero-btns .btns {
+  background-color: rgb(204, 217, 223);
+  margin: 15px;
+  padding: 8px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  color: #242424;
+  padding: 8px 20px;
+  border: 2px solid rgb(204, 217, 223);
+  transition: all 0.3s ease-out;
 }
 
 .fa-play-circle {

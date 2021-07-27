@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { URL_API } from "../../utils/constant";
-import { Button } from "react-bootstrap";
 import "./Login.scss";
 import axios from "axios";
 import swal from "sweetalert";
@@ -77,7 +76,7 @@ class LoginStudent extends Component {
           <div class="container">
             <div class="container--form container--login">
               <form onSubmit={this.handleSubmit} novalidate>
-                <h1>Log in</h1>
+                <h1>Log in as Student</h1>
                 <p>
                   Belum punya akun? <a href="/">Daftar</a>
                 </p>
@@ -115,9 +114,9 @@ class LoginStudent extends Component {
                 </div>
 
                 <div class="submit">
-                  <Button class="submit-button" type="submit">
+                  <button class="submit-button" type="submit">
                     Masuk
-                  </Button>
+                  </button>
                   <a href="/" class="submit-link">
                     Lupa kata sandi?
                   </a>

@@ -21,7 +21,9 @@ class home extends Component {
           {localStorage.getItem("id") ? (
             <>
               <p>Welcome, {localStorage.getItem("name")}</p>
-              <Button onClick={this.logout}>Logout</Button>
+              <div className="hero-btns-logout">
+                <Button className="btns-logout" onClick={this.logout}>Logout</Button>
+              </div>
             </>
           ) : (
             <div className="hero-btns">

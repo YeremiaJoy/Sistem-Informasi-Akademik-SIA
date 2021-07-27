@@ -59,6 +59,26 @@
   transition: all 0.3s ease-out;
 }
 
+.hero-btns-logout .btns-logout:hover {
+  transition: all 0.3s ease-out;
+  color: #fff;
+  transition: 250ms;
+  border: 2px solid rgb(202, 63, 82);
+  background-color: transparent;
+}
+.hero-btns-logout .btns-logout {
+  background-color: rgb(202, 63, 82);
+  margin: 15px;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #161616;
+  padding: 8px 20px;
+  border: 2px solid rgb(236, 100, 100);
+  transition: all 0.3s ease-out;
+}
+
+
 .fa-play-circle {
   margin-left: 4px;
 }

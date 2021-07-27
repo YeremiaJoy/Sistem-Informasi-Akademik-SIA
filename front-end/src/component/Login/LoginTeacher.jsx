@@ -43,14 +43,14 @@ class LoginTeacher extends Component {
       .then((res) => {
         swal({
           title: "Sukses Login",
-          text: "Sukses Login, Helloo " + res.data.username + "!!",
+          text: "Sukses Login, Helloo " + res.data.name + "!!",
           icon: "success",
           button: false,
           timer: 2500,
         });
         localStorage.setItem("id", res.data.id);
-        localStorage.setItem("nim", res.data.name);
-        localStorage.setItem("name", res.data.username);
+        localStorage.setItem("name", res.data.name);
+        localStorage.setItem("username", res.data.username);
         localStorage.setItem("majorId", res.data.major.id);
         localStorage.setItem("major", res.data.major.name);
         localStorage.setItem("password", res.data.password);

@@ -1,11 +1,25 @@
 export const NavbarData =
-  localStorage.getItem("id") === null
+  localStorage.getItem("type") === null
     ? [
         {
           id: 1,
           name: "Home",
           link: "/",
-        },
+        }    
+      ]
+    :  
+    localStorage.getItem("type") === "student"
+    ? [
+        {
+          id: 1,
+          name: "Home",
+          link: "/",
+        }, 
+        {
+            id: 2,
+            name: "Enroll",
+            link: "/enroll",
+        }
       ]
     : [
         {
@@ -33,4 +47,4 @@ export const NavbarData =
           name: "Teacher",
           link: "/teacher",
         },
-      ];
+    ]  

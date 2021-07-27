@@ -54,6 +54,7 @@ class LoginTeacher extends Component {
         localStorage.setItem("majorId", res.data.major.id);
         localStorage.setItem("major", res.data.major.name);
         localStorage.setItem("password", res.data.password);
+        localStorage.setItem("type", "teacher");
         this.props.history.push("/");
       })
       .catch((error) => {

@@ -20,7 +20,7 @@ class home extends Component {
           </p>
           {localStorage.getItem("id") ? (
             <>
-              <p>{localStorage.getItem("name")}</p>
+              <p>Welcome, {localStorage.getItem("name")}</p>
               <Button onClick={this.logout}>Logout</Button>
             </>
           ) : (

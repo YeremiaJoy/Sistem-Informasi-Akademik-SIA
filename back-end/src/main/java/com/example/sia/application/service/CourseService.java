@@ -61,4 +61,10 @@ public class CourseService {
 
         course.setStatus_delete(true);
     }
+
+    public List<Course> findAllCourseByMajor(Long idMajor){
+        major = majorRepository.findById(idMajor).orElseThrow(() -> new IllegalStateException("Major tidak ditemukan"));
+
+        return courseRepository.findAllCourseByMajor(major);
+    }
 }

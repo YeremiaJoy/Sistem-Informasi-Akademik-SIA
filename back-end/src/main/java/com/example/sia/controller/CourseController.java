@@ -21,9 +21,9 @@ public class CourseController {
         this.courseService.addCourse(courseDto.getName(), courseDto.getSemester(), courseDto.getSks(), courseDto.getIdMajor(), courseDto.getIdTeacher());
     }
 
-    @GetMapping(value = "/findAllCourseByMajor/{idMajor}")
-    public List<Course> findAllCourseByMajor(@PathVariable("idMajor") Long idMajor){
-        return this.courseService.findAllCourseByMajor(idMajor);
+    @GetMapping(value = "/findAllCourseByMajor/{idMajor}/{idStudent}")
+    public List<Course> findAllCourseByMajor(@PathVariable("idMajor") Long idMajor, @PathVariable("idStudent") Long idStudent){
+        return this.courseService.findAllCourseByMajor(idMajor, idStudent);
     }
 
     @GetMapping(value = "/findAllCourse")

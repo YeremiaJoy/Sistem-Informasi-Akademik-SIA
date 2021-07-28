@@ -16,7 +16,12 @@ class enroll extends Component {
 
   componentDidMount = () => {
     axios
-      .get(URL_API + `findAllCourseByMajor/${localStorage.getItem("majorId")}`)
+      .get(
+        URL_API +
+          `findAllCourseByMajor/${localStorage.getItem(
+            "majorId"
+          )}/${localStorage.getItem("id")}`
+      )
       .then((res) => {
         this.setState({ courses: res.data });
       });
@@ -37,6 +42,16 @@ class enroll extends Component {
     axios
       .post(URL_API + `enroll`, data)
       .then((res) => {
+        axios
+          .get(
+            URL_API +
+              `findAllCourseByMajor/${localStorage.getItem(
+                "majorId"
+              )}/${localStorage.getItem("id")}`
+          )
+          .then((res) => {
+            this.setState({ courses: res.data });
+          });
         axios
           .get(URL_API + `findAllEnrollByStudent/${localStorage.getItem("id")}`)
           .then((res) => {
@@ -66,6 +81,17 @@ class enroll extends Component {
     axios
       .delete(URL_API + `deleteEnroll/${idEnroll}`)
       .then((res) => {
+        axios
+          .get(
+            URL_API +
+              `findAllCourseByMajor/${localStorage.getItem(
+                "majorId"
+              )}/${localStorage.getItem("id")}`
+          )
+          .then((res) => {
+            this.setState({ courses: res.data });
+          });
+
         axios
           .get(URL_API + `findAllEnrollByStudent/${localStorage.getItem("id")}`)
           .then((res) => {
@@ -130,36 +156,30 @@ class enroll extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.courses.map((course, index) =>
-                this.state.enrolls.map((enroll) =>
-                  course.id === enroll.course.id ? (
-                    ""
-                  ) : (
-                    <tr key={course.id}>
-                      <td>{index + 1}</td>
-                      <td>{course.name}</td>
-                      <td>{course.semester}</td>
-                      <td>{course.sks}</td>
-                      <td>{course.teacher.name}</td>
-                      <td>
-                        <Button
-                          variant="warning"
-                          style={style.button_update}
-                          onClick={() =>
-                            this.ambil(
-                              localStorage.getItem("id"),
-                              course.id,
-                              course.name
-                            )
-                          }
-                        >
-                          Ambil
-                        </Button>
-                      </td>
-                    </tr>
-                  )
-                )
-              )}
+              {this.state.courses.map((course, index) => (
+                <tr key={course.id}>
+                  <td>{index + 1}</td>
+                  <td>{course.name}</td>
+                  <td>{course.semester}</td>
+                  <td>{course.sks}</td>
+                  <td>{course.teacher.name}</td>
+                  <td>
+                    <Button
+                      variant="warning"
+                      style={style.button_update}
+                      onClick={() =>
+                        this.ambil(
+                          localStorage.getItem("id"),
+                          course.id,
+                          course.name
+                        )
+                      }
+                    >
+                      Ambil
+                    </Button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
 
